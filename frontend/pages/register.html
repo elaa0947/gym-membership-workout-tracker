@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Create Account | Corely Gym</title>
+
+    <link
+        rel="stylesheet"
+        href="../css/style.css"
+    >
+</head>
+
+<body class="auth-page">
+
+    <header class="navbar">
+
+        <a href="../index.html" class="brand">
+            <span class="brand-mark">C</span>
+            <span>Corely</span>
+        </a>
+
+        <a href="../index.html" class="back-link">
+            ← Back to home
+        </a>
+
+    </header>
+
+
+    <main class="auth-container">
+
+        <section class="auth-intro">
+
+            <span class="eyebrow">
+                MEMBER REGISTRATION
+            </span>
+
+            <h1>
+                Start your<br>
+                <span>fitness journey.</span>
+            </h1>
+
+            <p>
+                Create your Corely account to access your
+                membership, workout plans and progress.
+            </p>
+
+            <div class="trust-row">
+                <span class="trust-item">
+                    <span class="status-dot"></span>
+                    Secure account
+                </span>
+
+                <span class="trust-item">
+                    ✓ Easy setup
+                </span>
+            </div>
+
+        </section>
+
+
+        <section class="form-card">
+
+            <div class="form-header">
+
+                <div>
+                    <span class="eyebrow">NEW MEMBER</span>
+
+                    <h2>Create your account</h2>
+
+                    <p>
+                        Enter your details below to get started.
+                    </p>
+                </div>
+
+                <span class="step-indicator">
+                    01 / 01
+                </span>
+
+            </div>
+
+
+            <form id="registrationForm" novalidate>
+
+                <!-- Full Name -->
+
+                <div class="form-group">
+
+                    <label for="name">
+                        Full name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Enter your full name"
+                        autocomplete="name"
+                    >
+
+                    <small
+                        class="field-error"
+                        id="nameError"
+                    ></small>
+
+                </div>
+
+
+                <!-- Email -->
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Email address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="you@example.com"
+                        autocomplete="email"
+                    >
+
+                    <small
+                        class="field-error"
+                        id="emailError"
+                    ></small>
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <!-- Phone -->
+
+                    <div class="form-group">
+
+                        <label for="phone">
+                            Phone number
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            placeholder="10-digit number"
+                            maxlength="10"
+                            autocomplete="tel"
+                        >
+
+                        <small
+                            class="field-error"
+                            id="phoneError"
+                        ></small>
+
+                    </div>
+
+
+                    <!-- Password -->
+
+                    <div class="form-group">
+
+                        <label for="password">
+                            Password
+                        </label>
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Minimum 8 characters"
+                            autocomplete="new-password"
+                        >
+
+                        <small
+                            class="field-error"
+                            id="passwordError"
+                        ></small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Confirm Password -->
+
+                <div class="form-group">
+
+                    <label for="confirmPassword">
+                        Confirm password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        name="confirmPassword"
+                        placeholder="Re-enter your password"
+                        autocomplete="new-password"
+                    >
+
+                    <small
+                        class="field-error"
+                        id="confirmPasswordError"
+                    ></small>
+
+                </div>
+
+
+                <div
+                    id="formMessage"
+                    class="form-message"
+                    role="alert"
+                ></div>
+
+
+                <button
+                    type="submit"
+                    class="primary-button submit-button"
+                >
+                    Create account
+                    <span>→</span>
+                </button>
+
+
+                <p class="form-footer">
+                    Already have an account?
+                    <a href="#">
+                        Sign in
+                    </a>
+                </p>
+
+            </form>
+
+        </section>
+
+    </main>
+
+    <script
+        type="module"
+        src="../js/registration.js"
+    ></script>
+
+</body>
+</html>
