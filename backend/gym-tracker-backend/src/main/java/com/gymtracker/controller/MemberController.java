@@ -2,6 +2,7 @@ package com.gymtracker.controller;
 
 import com.gymtracker.model.Member;
 import com.gymtracker.service.MemberService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +19,7 @@ public class MemberController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<?> registerMember(@RequestBody Member member) {
+    public ResponseEntity<?> registerMember(@Valid @RequestBody Member member) {
 
         try {
             Member registeredMember = memberService.registerMember(member);
