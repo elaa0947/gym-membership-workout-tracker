@@ -255,13 +255,6 @@ form.addEventListener(
 
         try {
 
-            /*
-             * This calls the Spring Boot backend.
-             *
-             * The endpoint will be implemented by
-             * Abishai on his backend branch.
-             */
-
             const result =
                 await registerMember(memberData);
 
