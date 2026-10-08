@@ -85,4 +85,49 @@ public class MemberService {
 
         return updatedMember;
     }
+public Member completeOnboarding(
+        Long id,
+        Double height,
+        Double weight,
+        String fitnessGoal) {
+
+    Member member =
+            memberRepository.findById(id)
+                    .orElseThrow(() ->
+                            new IllegalArgumentException(
+                                    "Member not found."
+                            ));
+
+    if (height == null || height <= 0) {
+        throw new IllegalArgumentException(
+                "Height must be greater than 0."
+        );
+    }
+
+    if (weight == null || weight <= 0) {
+        throw new IllegalArgumentException(
+                "Weight must be greater than 0."
+        );
+    }
+
+    if (fitnessGoal == null ||
+            fitnessGoal.trim().isEmpty()) {
+
+        throw new IllegalArgumentException(
+                "Fitness goal is required."
+        );
+    }
+
+    member.setHeight(height);
+    member.setWeight(weight);
+    member.setFitnessGoal(fitnessGoal);
+    member.setOnboardingCompleted(true);
+
+    Member updatedMember =
+            memberRepository.save(member);
+
+    updatedMember.setPassword(null);
+
+    return updatedMember;
+}
 }

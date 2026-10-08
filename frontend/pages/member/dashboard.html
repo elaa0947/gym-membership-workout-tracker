@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Dashboard | Corely Gym</title>
+
+    <link
+        rel="stylesheet"
+        href="../../css/style.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../../css/dashboard.css"
+    >
+
+</head>
+
+<body class="app-page">
+
+    <!-- =========================================
+         SIDEBAR
+    ========================================== -->
+
+    <aside class="app-sidebar">
+
+        <a
+            href="dashboard.html"
+            class="brand"
+        >
+            <span class="brand-mark">C</span>
+            <span>Corely</span>
+        </a>
+
+        <div class="sidebar-section">
+
+            <span class="sidebar-label">
+                MAIN
+            </span>
+
+            <a
+                href="dashboard.html"
+                class="sidebar-link active"
+            >
+                <span>⌂</span>
+                Dashboard
+            </a>
+
+            <a
+                href="profile.html"
+                class="sidebar-link"
+            >
+                <span>◯</span>
+                My Profile
+            </a>
+
+            <a
+                href="membership.html"
+                class="sidebar-link"
+            >
+                <span>◇</span>
+                Membership
+            </a>
+
+        </div>
+
+
+        <div class="sidebar-section">
+
+            <span class="sidebar-label">
+                FITNESS
+            </span>
+
+            <a
+                href="workout.html"
+                class="sidebar-link"
+            >
+                <span>↗</span>
+                Workout
+            </a>
+
+            <a
+                href="attendance.html"
+                class="sidebar-link"
+            >
+                <span>✓</span>
+                Attendance
+            </a>
+
+            <a
+                href="progress.html"
+                class="sidebar-link"
+            >
+                <span>⌁</span>
+                Progress
+            </a>
+
+        </div>
+
+
+        <div class="sidebar-section">
+
+            <span class="sidebar-label">
+                ACCOUNT
+            </span>
+
+            <a
+                href="payments.html"
+                class="sidebar-link"
+            >
+                <span>₹</span>
+                Payments
+            </a>
+
+            <a
+                href="notifications.html"
+                class="sidebar-link"
+            >
+                <span>!</span>
+                Notifications
+            </a>
+
+        </div>
+
+
+        <div class="sidebar-bottom">
+
+            <a
+                href="../../index.html"
+                class="sidebar-link"
+                id="signOutLink"
+            >
+                <span>↪</span>
+                Sign out
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =========================================
+         MAIN
+    ========================================== -->
+
+    <main class="app-main">
+
+        <!-- TOP BAR -->
+
+        <header class="app-topbar">
+
+            <div>
+
+                <span class="eyebrow">
+                    MEMBER AREA
+                </span>
+
+                <h1>
+                    Dashboard
+                </h1>
+
+            </div>
+
+
+            <a
+                href="profile.html"
+                class="user-chip"
+            >
+
+                <span
+                    class="user-avatar"
+                    id="userAvatar"
+                >
+                    M
+                </span>
+
+                <span>
+
+                    <strong id="userName">
+                        Member
+                    </strong>
+
+                    <small>
+                        Member
+                    </small>
+
+                </span>
+
+            </a>
+
+        </header>
+
+
+        <!-- =========================================
+             WELCOME
+        ========================================== -->
+
+        <section class="dashboard-welcome">
+
+            <div>
+
+                <span class="eyebrow">
+                    YOUR FITNESS JOURNEY
+                </span>
+
+                <h2>
+                    Train smarter.
+                    <br>
+                    Track everything.
+                </h2>
+
+                <p>
+                    Stay consistent, monitor your progress,
+                    and make every workout count.
+                </p>
+
+
+                <!-- REAL MEMBER DATA -->
+
+                <div class="member-summary">
+
+                    <span id="memberHeight">
+                        Height: --
+                    </span>
+
+                    <span id="fitnessGoal">
+                        Goal: --
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <a
+                href="workout.html"
+                class="primary-button"
+            >
+                Today's workout
+                <span>→</span>
+            </a>
+
+        </section>
+
+
+        <!-- =========================================
+             STAT CARDS
+        ========================================== -->
+
+        <section class="dashboard-stats">
+
+
+            <!-- MEMBERSHIP -->
+
+            <article class="stat-card">
+
+                <span class="stat-label">
+                    MEMBERSHIP
+                </span>
+
+                <strong class="stat-value">
+                    ACTIVE
+                </strong>
+
+                <span class="stat-meta">
+                    24 days remaining
+                </span>
+
+            </article>
+
+
+            <!-- ATTENDANCE -->
+
+            <article class="stat-card">
+
+                <span class="stat-label">
+                    ATTENDANCE
+                </span>
+
+                <strong class="stat-value">
+                    82%
+                </strong>
+
+                <span class="stat-meta">
+                    This month
+                </span>
+
+            </article>
+
+
+            <!-- CURRENT WEIGHT -->
+
+            <article class="stat-card">
+
+                <span class="stat-label">
+                    CURRENT WEIGHT
+                </span>
+
+                <strong
+                    class="stat-value"
+                    id="memberWeight"
+                >
+                    --
+                </strong>
+
+                <span class="stat-meta">
+                    Current measurement
+                </span>
+
+            </article>
+
+
+            <!-- BMI -->
+
+            <article class="stat-card">
+
+                <span class="stat-label">
+                    BMI
+                </span>
+
+                <strong
+                    class="stat-value"
+                    id="memberBmi"
+                >
+                    --
+                </strong>
+
+                <span class="stat-meta">
+                    Calculated from height and weight
+                </span>
+
+            </article>
+
+        </section>
+
+
+        <!-- =========================================
+             CONTENT GRID
+        ========================================== -->
+
+        <section class="dashboard-grid">
+
+
+            <!-- =====================================
+                 WORKOUT
+            ====================================== -->
+
+            <article class="dashboard-card workout-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <span class="eyebrow">
+                            TODAY
+                        </span>
+
+                        <h3>
+                            Push Day
+                        </h3>
+
+                    </div>
+
+                    <span class="status-badge">
+                        4 / 6
+                    </span>
+
+                </div>
+
+
+                <div class="exercise-list">
+
+                    <div class="exercise-item">
+
+                        <span>01</span>
+
+                        <strong>
+                            Bench Press
+                        </strong>
+
+                        <small>
+                            4 × 10
+                        </small>
+
+                    </div>
+
+
+                    <div class="exercise-item">
+
+                        <span>02</span>
+
+                        <strong>
+                            Shoulder Press
+                        </strong>
+
+                        <small>
+                            3 × 12
+                        </small>
+
+                    </div>
+
+
+                    <div class="exercise-item">
+
+                        <span>03</span>
+
+                        <strong>
+                            Incline Dumbbell Press
+                        </strong>
+
+                        <small>
+                            3 × 10
+                        </small>
+
+                    </div>
+
+
+                    <div class="exercise-item">
+
+                        <span>04</span>
+
+                        <strong>
+                            Triceps Pushdown
+                        </strong>
+
+                        <small>
+                            3 × 15
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <a
+                    href="workout.html"
+                    class="card-action"
+                >
+                    View complete workout
+                    <span>→</span>
+                </a>
+
+            </article>
+
+
+            <!-- =====================================
+                 MEMBERSHIP
+            ====================================== -->
+
+            <article class="dashboard-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <span class="eyebrow">
+                            MEMBERSHIP
+                        </span>
+
+                        <h3>
+                            Premium Plan
+                        </h3>
+
+                    </div>
+
+                    <span class="status-badge">
+                        ACTIVE
+                    </span>
+
+                </div>
+
+
+                <div class="membership-info">
+
+                    <div>
+
+                        <span>
+                            Valid until
+                        </span>
+
+                        <strong>
+                            01 Nov 2026
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Renewal
+                        </span>
+
+                        <strong>
+                            ₹1,999
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <a
+                    href="membership.html"
+                    class="card-action"
+                >
+                    Manage membership
+                    <span>→</span>
+                </a>
+
+            </article>
+
+
+            <!-- =====================================
+                 PROGRESS
+            ====================================== -->
+
+            <article class="dashboard-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <span class="eyebrow">
+                            PROGRESS
+                        </span>
+
+                        <h3>
+                            Weight trend
+                        </h3>
+
+                    </div>
+
+                    <span class="trend-positive">
+                        ↓ 1.8 kg
+                    </span>
+
+                </div>
+
+
+                <div class="progress-chart">
+
+                    <div class="chart-line">
+                        ╱╲
+                    </div>
+
+                    <div class="chart-labels">
+
+                        <span>
+                            AUG
+                        </span>
+
+                        <span>
+                            SEP
+                        </span>
+
+                        <span>
+                            OCT
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <a
+                    href="progress.html"
+                    class="card-action"
+                >
+                    View progress
+                    <span>→</span>
+                </a>
+
+            </article>
+
+
+            <!-- =====================================
+                 ATTENDANCE
+            ====================================== -->
+
+            <article class="dashboard-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <span class="eyebrow">
+                            ATTENDANCE
+                        </span>
+
+                        <h3>
+                            October
+                        </h3>
+
+                    </div>
+
+                    <strong class="attendance-percent">
+                        82%
+                    </strong>
+
+                </div>
+
+
+                <div class="attendance-bar">
+
+                    <span></span>
+
+                </div>
+
+
+                <p class="card-description">
+                    You've attended 18 of 22
+                    available sessions this month.
+                </p>
+
+
+                <a
+                    href="attendance.html"
+                    class="card-action"
+                >
+                    View attendance
+                    <span>→</span>
+                </a>
+
+            </article>
+
+
+            <!-- =====================================
+                 NOTIFICATIONS
+            ====================================== -->
+
+            <article class="dashboard-card notifications-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <span class="eyebrow">
+                            NOTIFICATIONS
+                        </span>
+
+                        <h3>
+                            Recent updates
+                        </h3>
+
+                    </div>
+
+                    <a
+                        href="notifications.html"
+                        class="text-link"
+                    >
+                        View all
+                    </a>
+
+                </div>
+
+
+                <div class="notification-list">
+
+
+                    <div class="notification-item">
+
+                        <span class="notification-dot"></span>
+
+                        <div>
+
+                            <strong>
+                                Membership reminder
+                            </strong>
+
+                            <p>
+                                Your membership expires
+                                in 24 days.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="notification-item">
+
+                        <span class="notification-dot"></span>
+
+                        <div>
+
+                            <strong>
+                                Workout reminder
+                            </strong>
+
+                            <p>
+                                Your Push Day workout
+                                is ready.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================================
+         DASHBOARD JAVASCRIPT
+    ========================================== -->
+
+    <script
+        type="module"
+        src="../../js/dashboard.js"
+    ></script>
+
+
+    <!-- =========================================
+         SIGN OUT
+    ========================================== -->
+
+    <script>
+
+        const signOutLink =
+            document.getElementById("signOutLink");
+
+        if (signOutLink) {
+
+            signOutLink.addEventListener(
+                "click",
+                () => {
+
+                    localStorage.removeItem(
+                        "memberId"
+                    );
+
+                }
+            );
+
+        }
+
+    </script>
+
+</body>
+
+</html>

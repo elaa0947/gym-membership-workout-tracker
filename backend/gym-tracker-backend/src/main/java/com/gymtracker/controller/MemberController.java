@@ -24,6 +24,7 @@ public class MemberController {
         this.memberService = memberService;
     }
 
+
     // =========================
     // MEMBER REGISTRATION
     // =========================
@@ -145,6 +146,38 @@ public class MemberController {
 
 
     // =========================
+    // MEMBER ONBOARDING
+    // =========================
+
+    @PutMapping("/onboarding/{id}")
+    public ResponseEntity<?> completeOnboarding(
+            @PathVariable Long id,
+            @RequestBody OnboardingRequest request) {
+
+        try {
+
+            Member member =
+                    memberService.completeOnboarding(
+                            id,
+                            request.getHeight(),
+                            request.getWeight(),
+                            request.getFitnessGoal()
+                    );
+
+            return ResponseEntity.ok(member);
+
+        } catch (IllegalArgumentException e) {
+
+            return ResponseEntity
+                    .badRequest()
+                    .body("{\"message\":\""
+                            + e.getMessage()
+                            + "\"}");
+        }
+    }
+
+
+    // =========================
     // UPDATE PROFILE REQUEST
     // =========================
 
@@ -219,6 +252,45 @@ public class MemberController {
 
         public void setPassword(String password) {
             this.password = password;
+        }
+    }
+
+
+    // =========================
+    // ONBOARDING REQUEST
+    // =========================
+
+    public static class OnboardingRequest {
+
+        private Double height;
+        private Double weight;
+        private String fitnessGoal;
+
+        public OnboardingRequest() {
+        }
+
+        public Double getHeight() {
+            return height;
+        }
+
+        public void setHeight(Double height) {
+            this.height = height;
+        }
+
+        public Double getWeight() {
+            return weight;
+        }
+
+        public void setWeight(Double weight) {
+            this.weight = weight;
+        }
+
+        public String getFitnessGoal() {
+            return fitnessGoal;
+        }
+
+        public void setFitnessGoal(String fitnessGoal) {
+            this.fitnessGoal = fitnessGoal;
         }
     }
 }
