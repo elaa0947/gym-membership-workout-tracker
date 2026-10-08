@@ -29,4 +29,18 @@ public class MemberService {
 
         return memberRepository.save(member);
     }
+
+    public Member loginMember(String email, String password) {
+
+        Member member = memberRepository.findByEmail(email)
+                .orElseThrow(() ->
+                        new IllegalArgumentException("Invalid email or password.")
+                );
+
+        if (!passwordEncoder.matches(password, member.getPassword())) {
+            throw new IllegalArgumentException("Invalid email or password.");
+        }
+
+        return member;
+    }
 }
