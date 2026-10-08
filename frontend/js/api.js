@@ -111,4 +111,29 @@ export async function updateMemberProfile(
     }
 
     return data;
+}export async function completeOnboarding(
+    memberId,
+    onboardingData
+) {
+    const response = await fetch(
+        `${API_BASE_URL}/members/onboarding/${memberId}`,
+        {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(onboardingData)
+        }
+    );
+
+    const data = await response.json();
+
+    if (!response.ok) {
+        throw new Error(
+            data.message ||
+            "Unable to save onboarding information."
+        );
+    }
+
+    return data;
 }

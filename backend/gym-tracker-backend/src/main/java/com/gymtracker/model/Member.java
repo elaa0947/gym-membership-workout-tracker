@@ -41,7 +41,48 @@ public class Member {
 
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
+    @Column
+private Double height;
 
+@Column
+private Double weight;
+
+@Column
+private String fitnessGoal;
+
+@Column
+private Boolean onboardingCompleted = false;
+public Double getHeight() {
+    return height;
+}
+
+public void setHeight(Double height) {
+    this.height = height;
+}
+
+public Double getWeight() {
+    return weight;
+}
+
+public void setWeight(Double weight) {
+    this.weight = weight;
+}
+
+public String getFitnessGoal() {
+    return fitnessGoal;
+}
+
+public void setFitnessGoal(String fitnessGoal) {
+    this.fitnessGoal = fitnessGoal;
+}
+
+public Boolean getOnboardingCompleted() {
+    return onboardingCompleted;
+}
+
+public void setOnboardingCompleted(Boolean onboardingCompleted) {
+    this.onboardingCompleted = onboardingCompleted;
+}
     public Member() {
     }
 
@@ -88,4 +129,5 @@ public class Member {
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
+    
 }

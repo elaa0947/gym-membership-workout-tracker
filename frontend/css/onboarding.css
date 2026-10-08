@@ -1,0 +1,258 @@
+/* =========================================
+   CORELY MEMBER ONBOARDING
+========================================= */
+
+.onboarding-page {
+    min-height: 100vh;
+    padding: 35px 25px 70px;
+    background: var(--bg);
+}
+
+.onboarding-container {
+    width: min(1050px, 100%);
+    margin: 0 auto;
+}
+
+.onboarding-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 75px;
+}
+
+.onboarding-header .brand {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 900;
+    letter-spacing: -0.04em;
+}
+
+.onboarding-step {
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+}
+
+.onboarding-content {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 80px;
+    align-items: start;
+}
+
+.onboarding-intro {
+    position: sticky;
+    top: 35px;
+}
+
+.onboarding-intro h1 {
+    margin: 12px 0 22px;
+    font-size: clamp(42px, 5vw, 68px);
+    line-height: 0.95;
+    letter-spacing: -0.05em;
+}
+
+.onboarding-intro p {
+    max-width: 390px;
+    margin: 0;
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+.onboarding-form {
+    padding: 30px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+}
+
+.form-section {
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid var(--border);
+}
+
+.form-section:last-of-type {
+    margin-bottom: 0;
+}
+
+.form-section-heading {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 25px;
+}
+
+.form-section-heading > span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 30px;
+    height: 30px;
+
+    flex-shrink: 0;
+
+    border: 1px solid var(--border);
+    border-radius: 50%;
+
+    color: var(--accent);
+
+    font-size: 10px;
+    font-weight: 800;
+}
+
+.form-section-heading h2 {
+    margin: 0 0 5px;
+    font-size: 17px;
+}
+
+.form-section-heading p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+.form-group-full {
+    grid-column: 1 / -1;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 13px 14px;
+    box-sizing: border-box;
+
+    background: var(--surface-light);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+
+    color: var(--text);
+    font-family: inherit;
+    font-size: 13px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.form-group input::placeholder {
+    color: var(--muted);
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: var(--accent);
+
+    box-shadow:
+        0 0 0 3px rgba(183, 243, 74, 0.08);
+}
+
+.form-group select {
+    cursor: pointer;
+}
+
+.onboarding-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.onboarding-actions p {
+    max-width: 250px;
+    margin: 0;
+
+    color: var(--muted);
+
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+.onboarding-actions .primary-button {
+    flex-shrink: 0;
+}
+
+/* FORM MESSAGE */
+
+.form-message {
+    margin-top: 15px;
+    font-size: 12px;
+}
+
+.form-message.success {
+    color: var(--success);
+}
+
+.form-message.error {
+    color: var(--danger);
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 850px) {
+
+    .onboarding-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .onboarding-intro {
+        position: static;
+    }
+
+    .onboarding-intro h1 {
+        font-size: 48px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .onboarding-page {
+        padding: 25px 15px 50px;
+    }
+
+    .onboarding-header {
+        margin-bottom: 45px;
+    }
+
+    .onboarding-form {
+        padding: 22px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-group-full {
+        grid-column: auto;
+    }
+
+    .onboarding-actions {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .onboarding-actions .primary-button {
+        width: 100%;
+        justify-content: center;
+    }
+}
