@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Profile | Corely</title>
+
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/profile.css">
+</head>
+
+<body>
+
+<main class="profile-page">
+
+    <div class="profile-container">
+
+        <!-- Profile Header -->
+        <header class="profile-heading">
+
+            <div class="profile-avatar" id="profileAvatar">
+                M
+            </div>
+
+            <div>
+                <span class="eyebrow">MEMBER PROFILE</span>
+
+                <h1>My Profile</h1>
+
+                <p>
+                    Manage your personal information and account details.
+                </p>
+            </div>
+
+        </header>
+
+
+        <!-- Profile Layout -->
+        <div class="profile-layout">
+
+            <!-- Edit Profile -->
+            <section class="profile-card">
+
+                <div class="profile-card-header">
+
+                    <div>
+                        <span class="eyebrow">PERSONAL DETAILS</span>
+
+                        <h2>Account Information</h2>
+                    </div>
+
+                    <span class="profile-status">
+                        ACTIVE
+                    </span>
+
+                </div>
+
+
+                <form id="profileForm">
+
+                    <div class="profile-form-grid">
+
+                        <!-- Name -->
+                        <div class="form-group">
+
+                            <label for="name">
+                                Full Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                minlength="2"
+                                required
+                            >
+
+                            <span class="field-hint">
+                                Your name displayed across the gym application.
+                            </span>
+
+                        </div>
+
+
+                        <!-- Email -->
+                        <div class="form-group protected-field">
+
+                            <label for="email">
+                                Email Address
+                            </label>
+
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                disabled
+                            >
+
+                            <span class="field-hint">
+                                Email cannot be changed from the profile.
+                            </span>
+
+                        </div>
+
+
+                        <!-- Phone -->
+                        <div class="form-group">
+
+                            <label for="phone">
+                                Phone Number
+                            </label>
+
+                            <input
+                                type="tel"
+                                id="phone"
+                                name="phone"
+                                pattern="[6-9][0-9]{9}"
+                                maxlength="10"
+                                required
+                            >
+
+                            <span class="field-hint">
+                                Enter a valid 10-digit mobile number.
+                            </span>
+
+                        </div>
+
+
+                        <!-- Member ID -->
+                        <div class="form-group protected-field">
+
+                            <label for="memberId">
+                                Member ID
+                            </label>
+
+                            <input
+                                type="text"
+                                id="memberId"
+                                name="memberId"
+                                disabled
+                            >
+
+                            <span class="field-hint">
+                                Your unique membership identifier.
+                            </span>
+
+                        </div>
+
+
+                        <!-- Created Date -->
+                        <div class="form-group protected-field">
+
+                            <label for="createdAt">
+                                Member Since
+                            </label>
+
+                            <input
+                                type="text"
+                                id="createdAt"
+                                name="createdAt"
+                                disabled
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Message -->
+                    <div
+                        id="formMessage"
+                        class="form-message"
+                        aria-live="polite">
+                    </div>
+
+
+                    <!-- Actions -->
+                    <div class="profile-actions">
+
+                        <button
+                            type="button"
+                            id="resetButton"
+                            class="secondary-button">
+                            Reset Changes
+                        </button>
+
+                        <button
+                            type="submit"
+                            class="primary-button">
+                            Save Changes
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </section>
+
+
+            <!-- Profile Information -->
+            <aside class="profile-info-card">
+
+                <span class="eyebrow">ACCOUNT</span>
+
+                <h3>Profile Overview</h3>
+
+
+                <div class="info-list">
+
+                    <div class="info-item">
+
+                        <div class="info-icon">
+                            ✓
+                        </div>
+
+                        <div>
+                            <strong>Personal Details</strong>
+
+                            <span>
+                                Keep your name and phone number up to date.
+                            </span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="info-item">
+
+                        <div class="info-icon">
+                            @
+                        </div>
+
+                        <div>
+                            <strong>Email Protected</strong>
+
+                            <span>
+                                Your registered email is kept unchanged.
+                            </span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="info-item">
+
+                        <div class="info-icon">
+                            #
+                        </div>
+
+                        <div>
+                            <strong>Member ID</strong>
+
+                            <span>
+                                Your member ID is assigned by the system.
+                            </span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="info-item">
+
+                        <div class="info-icon">
+                            !
+                        </div>
+
+                        <div>
+                            <strong>Password Security</strong>
+
+                            <span>
+                                Password information is never displayed here.
+                            </span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </aside>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<script type="module" src="../../js/profile.js"></script>
+
+</body>
+</html>
