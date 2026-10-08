@@ -43,4 +43,46 @@ public class MemberService {
 
         return member;
     }
+
+    // =========================
+    // VIEW MEMBER PROFILE
+    // =========================
+
+    public Member getMemberProfile(Long id) {
+
+        Member member = memberRepository.findById(id)
+                .orElseThrow(() ->
+                        new IllegalArgumentException("Member not found.")
+                );
+
+        // Never return password
+        member.setPassword(null);
+
+        return member;
+    }
+
+    // =========================
+    // UPDATE MEMBER PROFILE
+    // =========================
+
+    public Member updateMemberProfile(
+            Long id,
+            String name,
+            String phone) {
+
+        Member member = memberRepository.findById(id)
+                .orElseThrow(() ->
+                        new IllegalArgumentException("Member not found.")
+                );
+
+        member.setName(name);
+        member.setPhone(phone);
+
+        Member updatedMember = memberRepository.save(member);
+
+        // Never return password
+        updatedMember.setPassword(null);
+
+        return updatedMember;
+    }
 }
