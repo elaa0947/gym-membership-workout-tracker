@@ -67,7 +67,7 @@ function validateForm() {
 
 
     const emailPattern =
-        /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 
     if (!email) {
@@ -168,6 +168,15 @@ form.addEventListener(
 
             const member =
                 await loginMember(loginData);
+
+
+            // Store the logged-in member ID
+            // so the profile page knows which
+            // member's profile to load.
+            localStorage.setItem(
+                "memberId",
+                member.id
+            );
 
 
             formMessage.className =

@@ -57,3 +57,58 @@ export async function loginMember(loginData) {
 
     return data;
 }
+
+
+export async function getMemberProfile(memberId) {
+
+    const response = await fetch(
+        `${API_BASE_URL}/members/profile/${memberId}`,
+        {
+            method: "GET"
+        }
+    );
+
+    const data = await response.json();
+
+    if (!response.ok) {
+
+        throw new Error(
+            data.message ||
+            "Unable to load member profile."
+        );
+    }
+
+    return data;
+}
+
+
+export async function updateMemberProfile(
+    memberId,
+    profileData
+) {
+
+    const response = await fetch(
+        `${API_BASE_URL}/members/profile/${memberId}`,
+        {
+            method: "PUT",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify(profileData)
+        }
+    );
+
+    const data = await response.json();
+
+    if (!response.ok) {
+
+        throw new Error(
+            data.message ||
+            "Unable to update member profile."
+        );
+    }
+
+    return data;
+}
