@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Progress | Corely Gym</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/dashboard.css">
+  <link rel="stylesheet" href="../../css/polaris.css" data-theme="polaris">
+  <link rel="stylesheet" href="../../css/fitness-pages.css">
+</head>
+<body class="app-page fitness-page" data-page="progress">
+  <aside class="app-sidebar">
+    <a href="dashboard.html" class="brand"><span class="brand-mark">C</span><span>Corely</span></a>
+    <div class="sidebar-section"><span class="sidebar-label">MAIN</span>
+      <a class="sidebar-link " href="dashboard.html"><span>⌂</span>Dashboard</a>
+<a class="sidebar-link " href="profile.html"><span>◯</span>My Profile</a>
+<a class="sidebar-link " href="membership.html"><span>◇</span>Membership</a>
+<a class="sidebar-link " href="workout.html"><span>↗</span>Workout</a>
+<a class="sidebar-link " href="attendance.html"><span>✓</span>Attendance</a>
+<a class="sidebar-link active" href="progress.html"><span>⌁</span>Progress</a>
+    </div>
+    <div class="sidebar-bottom"><a href="../../index.html" class="sidebar-link" id="signOutLink"><span>↪</span>Sign out</a></div>
+  </aside>
+  <main class="app-main">
+    <header class="app-topbar"><div><span class="eyebrow">MEMBER AREA</span><h1>Progress</h1></div>
+      <a href="profile.html" class="user-chip"><span class="user-avatar" id="userAvatar">M</span><span><strong id="userName">Member</strong><small>Member</small></span></a>
+    </header>
+    <div class="fit-page-intro"><span class="fit-eyebrow">YOUR PERSONAL RECORD</span><h1>Small steps. Real progress.</h1><p>Track your weight, understand your BMI, and see your consistency over time.</p></div>
+    
+        <section class="fit-hero"><div><span class="fit-eyebrow">MEASURE WHAT MATTERS</span><h2>Progress, not perfection.</h2><p>Log your weight and use your profile measurements to understand your starting point.</p></div><div class="fit-hero-mark">03<span>/ EVOLVE</span></div></section>
+        <section class="fit-grid">
+          <article class="fit-card"><span class="fit-eyebrow">BODY METRICS</span><h3>Your profile</h3><div class="fit-stat"><strong id="bmiValue">—</strong><span>BMI · based on profile</span></div><p id="bmiNote" class="fit-muted">Load your profile to calculate BMI.</p><div class="fit-stat"><strong id="profileWeight">—</strong><span>Profile weight</span></div><div class="fit-stat"><strong id="profileHeight">—</strong><span>Profile height</span></div></article>
+          <article class="fit-card"><span class="fit-eyebrow">WEIGHT JOURNAL</span><h3>Record a measurement</h3><form id="weightForm" class="fit-form"><label for="weightInput">Weight (kg)</label><input id="weightInput" type="number" min="20" max="350" step="0.1" placeholder="e.g. 67.5" required><label for="weightDate">Measurement date</label><input id="weightDate" type="date" required><button class="fit-button" type="submit">Save measurement ↗</button></form><p id="progressMessage" class="fit-message" aria-live="polite"></p></article>
+          <article class="fit-card"><span class="fit-eyebrow">TRAINING SUMMARY</span><h3>Activity to date</h3><div class="fit-stat"><strong id="progressWorkouts">0</strong><span>Saved workouts</span></div><div class="fit-stat"><strong id="progressAttendance">0</strong><span>Recorded gym visits</span></div><div class="fit-stat"><strong id="weightChange">—</strong><span>Weight change across logs</span></div></article>
+          <article class="fit-card fit-wide"><span class="fit-eyebrow">WEIGHT HISTORY</span><h3>Your measurements</h3><div id="weightHistory" class="fit-history"></div></article>
+        </section>
+    <footer class="fit-footer">CORELY / YOUR DATA, YOUR JOURNEY <span>Browser-saved activity</span></footer>
+  </main>
+  <script type="module" src="../../js/progress.js"></script>
+  <script>document.getElementById("signOutLink")?.addEventListener("click",()=>localStorage.removeItem("memberId"));</script>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Membership | Corely Gym</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/dashboard.css">
+    <link rel="stylesheet" href="../../css/membership.css">
+  <link rel="stylesheet" href="../../css/polaris.css" data-theme="polaris">
+</head>
+<body class="app-page">
+    <aside class="app-sidebar">
+        <a href="dashboard.html" class="brand">
+            <span class="brand-mark">C</span><span>Corely</span>
+        </a>
+
+        <div class="sidebar-section">
+            <span class="sidebar-label">MAIN</span>
+            <a href="dashboard.html" class="sidebar-link"><span>⌂</span>Dashboard</a>
+            <a href="profile.html" class="sidebar-link"><span>◯</span>My Profile</a>
+            <a href="membership.html" class="sidebar-link active"><span>◇</span>Membership</a>
+        </div>
+
+        <div class="sidebar-section">
+            <span class="sidebar-label">FITNESS</span>
+            <a href="workout.html" class="sidebar-link"><span>↗</span>Workout</a>
+            <a href="attendance.html" class="sidebar-link"><span>✓</span>Attendance</a>
+            <a href="progress.html" class="sidebar-link"><span>⌁</span>Progress</a>
+        </div>
+
+        <div class="sidebar-bottom">
+            <a href="../../index.html" class="sidebar-link" id="signOutLink">
+                <span>↪</span>Sign out
+            </a>
+        </div>
+    </aside>
+
+    <main class="app-main membership-page">
+        <header class="app-topbar">
+            <div>
+                <span class="eyebrow">MEMBER AREA</span>
+                <h1>Membership</h1>
+            </div>
+            <a href="profile.html" class="user-chip">
+                <span class="user-avatar" id="userAvatar">M</span>
+                <span>
+                    <strong id="userName">Member</strong>
+                    <small>Member account</small>
+                </span>
+            </a>
+        </header>
+
+        <section class="membership-intro">
+            <span class="eyebrow">YOUR MEMBERSHIP</span>
+            <h2>Consistency is your <span>real upgrade.</span></h2>
+            <p>Review your membership information and keep your fitness journey on track.</p>
+        </section>
+
+        <section class="membership-grid">
+            <article class="membership-plan-card">
+                <div class="plan-card-top">
+                    <span class="plan-symbol">C</span>
+                    <span class="plan-status" id="membershipStatus">NOT CONFIGURED</span>
+                </div>
+
+                <span class="eyebrow">CURRENT PLAN</span>
+                <h2 id="planName">Plan not assigned</h2>
+                <p id="planDescription">Your membership plan will appear here once it has been configured.</p>
+
+                <div class="plan-divider"></div>
+
+                <div class="plan-detail">
+                    <span>Member</span>
+                    <strong id="planMemberName">Loading...</strong>
+                </div>
+                <div class="plan-detail">
+                    <span>Member ID</span>
+                    <strong id="planMemberId">—</strong>
+                </div>
+                <div class="plan-detail">
+                    <span>Membership expiry</span>
+                    <strong>Not available</strong>
+                </div>
+
+                <p class="membership-note" id="membershipMessage" role="status">
+                    Membership details have not been configured in the backend yet.
+                </p>
+            </article>
+
+            <div class="membership-side">
+                <article class="membership-info-card">
+                    <span class="eyebrow">MEMBERSHIP OVERVIEW</span>
+                    <h3>Your account</h3>
+                    <div class="overview-row">
+                        <span>Account name</span>
+                        <strong id="overviewName">—</strong>
+                    </div>
+                    <div class="overview-row">
+                        <span>Email address</span>
+                        <strong id="overviewEmail">—</strong>
+                    </div>
+                    <div class="overview-row">
+                        <span>Phone number</span>
+                        <strong id="overviewPhone">—</strong>
+                    </div>
+                    <a href="profile.html" class="membership-link">View profile <span>↗</span></a>
+                </article>
+
+                <article class="membership-info-card membership-help">
+                    <span class="eyebrow">NEXT STEP</span>
+                    <h3>Ready to keep moving?</h3>
+                    <p>Your plan and expiry information can be added once membership records are available.</p>
+                    <a href="dashboard.html" class="primary-button">Back to dashboard <span>→</span></a>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <script type="module" src="../../js/membership.js"></script>
+</body>
+</html>

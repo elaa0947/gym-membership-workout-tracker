@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Attendance | Corely Gym</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/dashboard.css">
+  <link rel="stylesheet" href="../../css/polaris.css" data-theme="polaris">
+  <link rel="stylesheet" href="../../css/fitness-pages.css">
+</head>
+<body class="app-page fitness-page" data-page="attendance">
+  <aside class="app-sidebar">
+    <a href="dashboard.html" class="brand"><span class="brand-mark">C</span><span>Corely</span></a>
+    <div class="sidebar-section"><span class="sidebar-label">MAIN</span>
+      <a class="sidebar-link " href="dashboard.html"><span>⌂</span>Dashboard</a>
+<a class="sidebar-link " href="profile.html"><span>◯</span>My Profile</a>
+<a class="sidebar-link " href="membership.html"><span>◇</span>Membership</a>
+<a class="sidebar-link " href="workout.html"><span>↗</span>Workout</a>
+<a class="sidebar-link active" href="attendance.html"><span>✓</span>Attendance</a>
+<a class="sidebar-link " href="progress.html"><span>⌁</span>Progress</a>
+    </div>
+    <div class="sidebar-bottom"><a href="../../index.html" class="sidebar-link" id="signOutLink"><span>↪</span>Sign out</a></div>
+  </aside>
+  <main class="app-main">
+    <header class="app-topbar"><div><span class="eyebrow">MEMBER AREA</span><h1>Attendance</h1></div>
+      <a href="profile.html" class="user-chip"><span class="user-avatar" id="userAvatar">M</span><span><strong id="userName">Member</strong><small>Member</small></span></a>
+    </header>
+    <div class="fit-page-intro"><span class="fit-eyebrow">CONSISTENCY WINS</span><h1>Show up for yourself.</h1><p>Check in for today and build a consistent training habit.</p></div>
+    
+        <section class="fit-hero"><div><span class="fit-eyebrow">DAILY CHECK-IN</span><h2>Consistency is a superpower.</h2><p>Record your gym visit for today. One check-in per day.</p></div><div class="fit-hero-mark">02<span>/ SHOW UP</span></div></section>
+        <section class="fit-grid">
+          <article class="fit-card"><span class="fit-eyebrow">TODAY</span><h3 id="todayDate">Today's attendance</h3><p id="attendanceStatus" class="fit-muted">Ready for your check-in?</p><button id="checkInButton" class="fit-button">Mark attendance ↗</button><p id="attendanceMessage" class="fit-message" aria-live="polite"></p></article>
+          <article class="fit-card"><span class="fit-eyebrow">YOUR CONSISTENCY</span><h3>Attendance summary</h3><div class="fit-stat"><strong id="attendanceTotal">0</strong><span>Recorded visits</span></div><div class="fit-stat"><strong id="attendanceStreak">0</strong><span>Consecutive days</span></div><div class="fit-stat"><strong id="attendanceMonth">0</strong><span>This month</span></div></article>
+          <article class="fit-card fit-wide"><span class="fit-eyebrow">YOUR RECORD</span><h3>Attendance history</h3><div id="attendanceHistory" class="fit-history"></div></article>
+        </section>
+    <footer class="fit-footer">CORELY / YOUR DATA, YOUR JOURNEY <span>Browser-saved activity</span></footer>
+  </main>
+  <script type="module" src="../../js/attendance.js"></script>
+  <script>document.getElementById("signOutLink")?.addEventListener("click",()=>localStorage.removeItem("memberId"));</script>
+</body>
+</html>
