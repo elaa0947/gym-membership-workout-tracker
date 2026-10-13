@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Workout | Corely Gym</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/dashboard.css">
+  <link rel="stylesheet" href="../../css/polaris.css" data-theme="polaris">
+  <link rel="stylesheet" href="../../css/fitness-pages.css">
+</head>
+<body class="app-page fitness-page" data-page="workout">
+  <aside class="app-sidebar">
+    <a href="dashboard.html" class="brand"><span class="brand-mark">C</span><span>Corely</span></a>
+    <div class="sidebar-section"><span class="sidebar-label">MAIN</span>
+      <a class="sidebar-link " href="dashboard.html"><span>⌂</span>Dashboard</a>
+<a class="sidebar-link " href="profile.html"><span>◯</span>My Profile</a>
+<a class="sidebar-link " href="membership.html"><span>◇</span>Membership</a>
+<a class="sidebar-link active" href="workout.html"><span>↗</span>Workout</a>
+<a class="sidebar-link " href="attendance.html"><span>✓</span>Attendance</a>
+<a class="sidebar-link " href="progress.html"><span>⌁</span>Progress</a>
+    </div>
+    <div class="sidebar-bottom"><a href="../../index.html" class="sidebar-link" id="signOutLink"><span>↪</span>Sign out</a></div>
+  </aside>
+  <main class="app-main">
+    <header class="app-topbar"><div><span class="eyebrow">MEMBER AREA</span><h1>Workout</h1></div>
+      <a href="profile.html" class="user-chip"><span class="user-avatar" id="userAvatar">M</span><span><strong id="userName">Member</strong><small>Member</small></span></a>
+    </header>
+    <div class="fit-page-intro"><span class="fit-eyebrow">YOUR TRAINING SPACE</span><h1>Build strength. Keep showing up.</h1><p>Plan your session, complete each exercise, and save your training history.</p></div>
+    
+        <section class="fit-hero">
+          <div><span class="fit-eyebrow">TODAY'S SESSION</span><h2>Make it count.</h2>
+          <p>Choose the exercises you complete. Save the session when you're done.</p></div>
+          <div class="fit-hero-mark">01<span>/ TRAIN</span></div>
+        </section>
+        <section class="fit-grid">
+          <article class="fit-card fit-wide">
+            <div class="fit-card-head"><div><span class="fit-eyebrow">EXERCISE PLAN</span><h3>Full-body fundamentals</h3></div><span class="fit-pill">EDIT AS YOU GO</span></div>
+            <div id="exerciseList" class="fit-exercises"></div>
+            <div class="fit-actions"><span id="workoutCount" class="fit-muted">0 exercises completed</span><button id="saveWorkout" class="fit-button">Save workout ↗</button></div>
+            <p id="workoutMessage" class="fit-message" aria-live="polite"></p>
+          </article>
+          <article class="fit-card"><span class="fit-eyebrow">SESSION SUMMARY</span><h3>Your effort</h3>
+            <div class="fit-stat"><strong id="exerciseDone">0</strong><span>Exercises completed</span></div>
+            <div class="fit-stat"><strong id="sessionTotal">0</strong><span>Saved sessions</span></div>
+            <div class="fit-progress-track"><span id="exerciseBar"></span></div>
+            <p class="fit-muted">Your records are saved in this browser.</p>
+          </article>
+          <article class="fit-card fit-wide"><span class="fit-eyebrow">RECENT ACTIVITY</span><h3>Workout history</h3><div id="workoutHistory" class="fit-history"></div></article>
+        </section>
+    <footer class="fit-footer">CORELY / YOUR DATA, YOUR JOURNEY <span>Browser-saved activity</span></footer>
+  </main>
+  <script type="module" src="../../js/workout.js"></script>
+  <script>document.getElementById("signOutLink")?.addEventListener("click",()=>localStorage.removeItem("memberId"));</script>
+</body>
+</html>

@@ -4,23 +4,27 @@
 ========================================= */
 
 :root {
-    --bg: #080a08;
-    --surface: #101310;
-    --surface-light: #171b17;
+    --bg: #242832;
+    --surface: #2D323D;
+    --surface-light: #383F4B;
+    --border: rgba(190, 205, 225, 0.14);
 
-    --border: rgba(255, 255, 255, 0.09);
+    --text: #F2F4F7;
+    --muted: #A8B1C0;
 
-    --text: #f2f4ee;
-    --muted: #969d93;
+    --accent: #FF873E;
+    --accent-dark: #E66C2D;
 
-    --accent: #b7f34a;
-    --accent-dark: #91c52d;
+    --violet: #A88BFF;
+    --blue: #79D5F2;
+    --danger: #FF6F7D;
+    --success: #8FD6A1;
 
-    --danger: #ff7777;
-    --success: #b7f34a;
+    --radius-lg: 20px;
+    --radius-md: 13px;
 
-    --radius-lg: 24px;
-    --radius-md: 14px;
+    --shadow-card: 0 14px 34px rgba(9, 11, 17, 0.22);
+    --motion: cubic-bezier(.2, .75, .25, 1);
 
     --font:
         Inter,
@@ -1139,4 +1143,380 @@ footer {
         align-items: stretch;
     }
 
+}
+/* =========================================================
+   CORELY PROFESSIONAL DARK THEME
+   Charcoal • Graphite • White text • Orange accent
+   ========================================================= */
+
+:root {
+    color-scheme: dark;
+
+    --bg: #0c0f0f;
+    --surface: #141918;
+    --surface-light: #1c2220;
+    --border: rgba(226, 233, 229, 0.11);
+
+    --text: #f0f3f1;
+    --muted: #9ba5a0;
+
+    --accent: #ff7847;
+    --accent-dark: #e85d2c;
+
+    --danger: #ff7777;
+    --success: #8fd6a1;
+
+    --radius-lg: 20px;
+    --radius-md: 12px;
+}
+
+html {
+    color-scheme: dark;
+    background: var(--bg);
+    scroll-behavior: smooth;
+}
+
+body {
+    background:
+        radial-gradient(
+            circle at 82% 0%,
+            rgba(255, 120, 71, 0.045),
+            transparent 32%
+        ),
+        var(--bg);
+    color: var(--text);
+}
+
+.brand-mark {
+    background: var(--accent);
+    color: #17100d;
+}
+
+.nav-button,
+.primary-button {
+    background: var(--accent);
+    color: #17100d !important;
+    font-weight: 750;
+}
+
+.nav-button:hover,
+.primary-button:hover {
+    background: #ff9169;
+}
+
+.secondary-button {
+    background: var(--surface-light);
+    border: 1px solid var(--border);
+    color: var(--text);
+}
+
+input,
+select,
+textarea {
+    background: var(--surface);
+    color: var(--text);
+    border-color: var(--border);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--accent);
+    outline-color: var(--accent);
+}
+
+::selection {
+    background: var(--accent);
+    color: #17100d;
+}
+
+:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+
+/* ===== CORELY: PROFESSIONAL INTERACTION SYSTEM ===== */
+
+:root {
+    --bg: #0c0f0f;
+    --surface: #141918;
+    --surface-light: #1c2220;
+    --border: rgba(220, 232, 224, 0.10);
+    --text: #f0f3f1;
+    --muted: #9ba5a0;
+    --accent: #ff7847;
+    --accent-dark: #e85d2c;
+    --radius-lg: 18px;
+    --radius-md: 12px;
+    --ease-out: cubic-bezier(.2, .75, .25, 1);
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3 {
+    text-wrap: balance;
+}
+
+a, button, input, select, textarea {
+    -webkit-tap-highlight-color: transparent;
+}
+
+a, button {
+    transition:
+        color 180ms ease,
+        background-color 180ms ease,
+        border-color 180ms ease,
+        transform 180ms var(--ease-out),
+        box-shadow 180ms ease;
+}
+
+button, .primary-button, .secondary-button {
+    cursor: pointer;
+}
+
+.primary-button {
+    border: 1px solid transparent;
+    box-shadow: 0 3px 12px rgba(255, 120, 71, .10);
+}
+
+.primary-button:hover {
+    background: #ff9169;
+    box-shadow: 0 7px 22px rgba(255, 120, 71, .19);
+    transform: translateY(-2px);
+}
+
+.primary-button:active,
+.secondary-button:active {
+    transform: translateY(0) scale(.98);
+}
+
+.secondary-button:hover {
+    border-color: rgba(255, 120, 71, .45);
+    background: var(--surface-light);
+}
+
+input, select, textarea {
+    border-radius: 10px;
+    transition: border-color 180ms ease, box-shadow 180ms ease;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(255, 120, 71, .10);
+    outline: none;
+}
+
+::selection {
+    background: var(--accent);
+    color: #17100d;
+}
+
+:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+@keyframes corely-enter {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes corely-glow {
+    0%, 100% { box-shadow: 0 0 0 rgba(255, 120, 71, 0); }
+    50% { box-shadow: 0 0 22px rgba(255, 120, 71, .07); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .profile-page,
+    .membership-page,
+    .app-main {
+        animation: corely-enter 450ms var(--ease-out) both;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+    }
+}
+
+/* =====================================================
+   CORELY 3.0 — PREMIUM MULTICOLOR DARK DESIGN SYSTEM
+   ===================================================== */
+
+:root {
+    color-scheme: dark;
+
+    --bg: #11141d;
+    --surface: #191e2b;
+    --surface-light: #222a3a;
+    --border: rgba(190, 205, 235, .12);
+
+    --text: #f2f4fc;
+    --muted: #a0a9bd;
+
+    --accent: #ff8657;
+    --accent-dark: #ed633e;
+
+    --teal: #48d9c1;
+    --violet: #aa91ff;
+    --blue: #79a8ff;
+    --danger: #ff7585;
+    --success: #48d9c1;
+
+    --radius-lg: 20px;
+    --radius-md: 13px;
+
+    --shadow-card: 0 14px 36px rgba(0, 0, 0, .18);
+    --motion: cubic-bezier(.2, .75, .25, 1);
+}
+
+html {
+    background: var(--bg);
+    color-scheme: dark;
+    scroll-behavior: smooth;
+}
+
+body {
+    color: var(--text);
+    background:
+        radial-gradient(ellipse at 0% 0%, rgba(121,168,255,.07), transparent 35%),
+        radial-gradient(ellipse at 100% 10%, rgba(170,145,255,.06), transparent 32%),
+        var(--bg);
+    -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+    color: var(--text);
+    letter-spacing: -.035em;
+}
+
+p {
+    text-wrap: pretty;
+}
+
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+.brand-mark {
+    background: linear-gradient(135deg, var(--accent), #ffb16f);
+    color: #24130e;
+    box-shadow: 0 5px 20px rgba(255,134,87,.16);
+}
+
+.primary-button,
+.nav-button {
+    background: linear-gradient(135deg, #ff9867, #ff754f);
+    color: #27140e !important;
+    border: 1px solid rgba(255,255,255,.10);
+    box-shadow: 0 5px 18px rgba(255,134,87,.13);
+    font-weight: 800;
+    transition:
+        transform 200ms var(--motion),
+        box-shadow 200ms ease,
+        filter 200ms ease;
+}
+
+.primary-button:hover,
+.nav-button:hover {
+    filter: brightness(1.08);
+    transform: translateY(-2px);
+    box-shadow: 0 9px 25px rgba(255,134,87,.22);
+}
+
+.primary-button:active,
+.nav-button:active {
+    transform: scale(.98);
+}
+
+.secondary-button {
+    background: var(--surface-light);
+    color: var(--text);
+    border: 1px solid var(--border);
+}
+
+.secondary-button:hover {
+    border-color: var(--violet);
+    background: #292f43;
+}
+
+input, select, textarea {
+    background: #151a26;
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    transition: border-color 180ms ease, box-shadow 180ms ease;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: var(--violet);
+    box-shadow: 0 0 0 3px rgba(170,145,255,.12);
+    outline: none;
+}
+
+input::placeholder, textarea::placeholder {
+    color: #79849b;
+}
+
+::selection {
+    background: var(--violet);
+    color: #151322;
+}
+
+:focus-visible {
+    outline: 2px solid var(--teal);
+    outline-offset: 3px;
+}
+
+/* Reusable status and progress colors */
+.status-badge,
+.profile-status {
+    color: var(--teal);
+    background: rgba(72,217,193,.09);
+    border-color: rgba(72,217,193,.22);
+}
+
+@keyframes corely-rise {
+    from { opacity: 0; transform: translateY(13px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes corely-fade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes corely-progress {
+    from { width: 0; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .app-main,
+    .membership-page,
+    .profile-page {
+        animation: corely-rise 420ms var(--motion) both;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
+    }
 }
