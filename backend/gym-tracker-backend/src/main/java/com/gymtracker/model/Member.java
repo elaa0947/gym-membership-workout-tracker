@@ -1,11 +1,13 @@
 package com.gymtracker.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -37,52 +39,121 @@ public class Member {
     @NotBlank(message = "Password is required")
     @Size(min = 8, message = "Password must contain at least 8 characters")
     @Column(nullable = false)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
+
     @Column
-private Double height;
+    private Double height;
 
-@Column
-private Double weight;
+    @Column
+    private Double weight;
 
-@Column
-private String fitnessGoal;
+    @Column
+    private String fitnessGoal;
 
-@Column
-private Boolean onboardingCompleted = false;
-public Double getHeight() {
-    return height;
-}
+    @Column
+    private Boolean onboardingCompleted = false;
 
-public void setHeight(Double height) {
-    this.height = height;
-}
+    @Column(name = "membership_plan")
+    private String membershipPlan;
 
-public Double getWeight() {
-    return weight;
-}
+    @Column(name = "membership_status")
+    private String membershipStatus = "NONE";
 
-public void setWeight(Double weight) {
-    this.weight = weight;
-}
+    @Column(name = "membership_duration_months")
+    private Integer membershipDurationMonths;
 
-public String getFitnessGoal() {
-    return fitnessGoal;
-}
+    @Column(name = "membership_start_date")
+    private LocalDate membershipStartDate;
 
-public void setFitnessGoal(String fitnessGoal) {
-    this.fitnessGoal = fitnessGoal;
-}
+    @Column(name = "membership_end_date")
+    private LocalDate membershipEndDate;
 
-public Boolean getOnboardingCompleted() {
-    return onboardingCompleted;
-}
+    @Column(name = "membership_price")
+    private Double membershipPrice;
 
-public void setOnboardingCompleted(Boolean onboardingCompleted) {
-    this.onboardingCompleted = onboardingCompleted;
-}
+    public String getMembershipPlan() {
+        return membershipPlan;
+    }
+
+    public void setMembershipPlan(String membershipPlan) {
+        this.membershipPlan = membershipPlan;
+    }
+
+    public String getMembershipStatus() {
+        return membershipStatus;
+    }
+
+    public void setMembershipStatus(String membershipStatus) {
+        this.membershipStatus = membershipStatus;
+    }
+
+    public Integer getMembershipDurationMonths() {
+        return membershipDurationMonths;
+    }
+
+    public void setMembershipDurationMonths(Integer membershipDurationMonths) {
+        this.membershipDurationMonths = membershipDurationMonths;
+    }
+
+    public LocalDate getMembershipStartDate() {
+        return membershipStartDate;
+    }
+
+    public void setMembershipStartDate(LocalDate membershipStartDate) {
+        this.membershipStartDate = membershipStartDate;
+    }
+
+    public LocalDate getMembershipEndDate() {
+        return membershipEndDate;
+    }
+
+    public void setMembershipEndDate(LocalDate membershipEndDate) {
+        this.membershipEndDate = membershipEndDate;
+    }
+
+    public Double getMembershipPrice() {
+        return membershipPrice;
+    }
+
+    public void setMembershipPrice(Double membershipPrice) {
+        this.membershipPrice = membershipPrice;
+    }
+
+    public Double getHeight() {
+        return height;
+    }
+
+    public void setHeight(Double height) {
+        this.height = height;
+    }
+
+    public Double getWeight() {
+        return weight;
+    }
+
+    public void setWeight(Double weight) {
+        this.weight = weight;
+    }
+
+    public String getFitnessGoal() {
+        return fitnessGoal;
+    }
+
+    public void setFitnessGoal(String fitnessGoal) {
+        this.fitnessGoal = fitnessGoal;
+    }
+
+    public Boolean getOnboardingCompleted() {
+        return onboardingCompleted;
+    }
+
+    public void setOnboardingCompleted(Boolean onboardingCompleted) {
+        this.onboardingCompleted = onboardingCompleted;
+    }
     public Member() {
     }
 

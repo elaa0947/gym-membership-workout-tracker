@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Membership | Corely Gym</title>
-    <link rel="stylesheet" href="../../css/style.css">
-    <link rel="stylesheet" href="../../css/dashboard.css">
-    <link rel="stylesheet" href="../../css/membership.css">
-  <link rel="stylesheet" href="../../css/polaris.css" data-theme="polaris">
+    <link rel="stylesheet" href="../../css/style.css?v=green-3.0">
+    <link rel="stylesheet" href="../../css/dashboard.css?v=green-3.0">
+    <link rel="stylesheet" href="../../css/polaris.css?v=green-3.0" data-theme="polaris">
+    <link rel="stylesheet" href="../../css/membership.css?v=green-3.0">
 </head>
 <body class="app-page">
     <aside class="app-sidebar">
@@ -52,26 +52,27 @@
         </header>
 
         <section class="membership-intro">
-            <span class="eyebrow">YOUR MEMBERSHIP</span>
+            <span class="eyebrow">YOUR MEMBERSHIP STATUS</span>
             <h2>Consistency is your <span>real upgrade.</span></h2>
-            <p>Review your membership information and keep your fitness journey on track.</p>
+            <p>Review your active plan, manage your renewal dates, or choose a new training tier.</p>
         </section>
 
+        <!-- Current Active Membership Section -->
         <section class="membership-grid">
             <article class="membership-plan-card">
                 <div class="plan-card-top">
                     <span class="plan-symbol">C</span>
-                    <span class="plan-status" id="membershipStatus">NOT CONFIGURED</span>
+                    <span class="plan-status" id="membershipStatus">CHECKING...</span>
                 </div>
 
-                <span class="eyebrow">CURRENT PLAN</span>
-                <h2 id="planName">Plan not assigned</h2>
-                <p id="planDescription">Your membership plan will appear here once it has been configured.</p>
+                <span class="eyebrow">ACTIVE SUBSCRIPTION</span>
+                <h2 id="planName">Loading plan...</h2>
+                <p id="planDescription">Connecting to your account records...</p>
 
                 <div class="plan-divider"></div>
 
                 <div class="plan-detail">
-                    <span>Member</span>
+                    <span>Member Name</span>
                     <strong id="planMemberName">Loading...</strong>
                 </div>
                 <div class="plan-detail">
@@ -79,19 +80,27 @@
                     <strong id="planMemberId">—</strong>
                 </div>
                 <div class="plan-detail">
-                    <span>Membership expiry</span>
-                    <strong>Not available</strong>
+                    <span>Start Date</span>
+                    <strong id="planStartDate">—</strong>
+                </div>
+                <div class="plan-detail">
+                    <span>Membership Expiry</span>
+                    <strong id="planExpiryDate">—</strong>
+                </div>
+                <div class="plan-detail">
+                    <span>Time Remaining</span>
+                    <strong id="planDaysRemaining">—</strong>
                 </div>
 
-                <p class="membership-note" id="membershipMessage" role="status">
-                    Membership details have not been configured in the backend yet.
-                </p>
+                <div class="membership-note" id="membershipMessage" role="status">
+                    Loading membership details...
+                </div>
             </article>
 
             <div class="membership-side">
                 <article class="membership-info-card">
-                    <span class="eyebrow">MEMBERSHIP OVERVIEW</span>
-                    <h3>Your account</h3>
+                    <span class="eyebrow">ACCOUNT SUMMARY</span>
+                    <h3>Your details</h3>
                     <div class="overview-row">
                         <span>Account name</span>
                         <strong id="overviewName">—</strong>
@@ -104,14 +113,106 @@
                         <span>Phone number</span>
                         <strong id="overviewPhone">—</strong>
                     </div>
-                    <a href="profile.html" class="membership-link">View profile <span>↗</span></a>
+                    <a href="profile.html" class="membership-link">Edit profile <span>↗</span></a>
                 </article>
 
-                <article class="membership-info-card membership-help">
-                    <span class="eyebrow">NEXT STEP</span>
-                    <h3>Ready to keep moving?</h3>
-                    <p>Your plan and expiry information can be added once membership records are available.</p>
-                    <a href="dashboard.html" class="primary-button">Back to dashboard <span>→</span></a>
+                <article class="membership-info-card">
+                    <span class="eyebrow">ACCESS GUARANTEE</span>
+                    <h3>Active Benefits</h3>
+                    <div class="overview-row">
+                        <span>Locker Access</span>
+                        <strong>Included</strong>
+                    </div>
+                    <div class="overview-row">
+                        <span>Workout Logging</span>
+                        <strong>Unlimited</strong>
+                    </div>
+                    <div class="overview-row">
+                        <span>Attendance Tracking</span>
+                        <strong>Live Synced</strong>
+                    </div>
+                    <a href="dashboard.html" class="membership-link">Back to dashboard <span>→</span></a>
+                </article>
+            </div>
+        </section>
+
+        <!-- Available Membership Plans -->
+        <section class="plans-section">
+            <div class="plans-section-header">
+                <span class="eyebrow">SELECT OR RENEW PLAN</span>
+                <h2>Choose Your Training Tier</h2>
+                <p>Select a membership tier to instantly activate or renew your gym access in the database.</p>
+            </div>
+
+            <div class="plans-grid">
+                <!-- Starter Plan -->
+                <article class="tier-card" data-plan="STARTER">
+                    <div class="tier-card-top">
+                        <span class="eyebrow">ESSENTIAL</span>
+                        <h3>Starter Plan</h3>
+                        <p class="tier-desc">Ideal for getting started with standard gym floor and cardio equipment.</p>
+                        <div class="tier-price">
+                            <strong>₹999</strong>
+                            <span>/ 1 month</span>
+                        </div>
+                    </div>
+                    <ul class="tier-features">
+                        <li><span class="check-icon">✓</span> Standard gym floor access</li>
+                        <li><span class="check-icon">✓</span> Cardio & strength zone access</li>
+                        <li><span class="check-icon">✓</span> Locker room access</li>
+                        <li><span class="check-icon">✓</span> Corely digital workout tracking</li>
+                    </ul>
+                    <button class="tier-btn tier-btn-secondary" data-plan="STARTER" data-months="1" data-price="999">
+                        Activate Starter Plan ↗
+                    </button>
+                </article>
+
+                <!-- Pro Plan (Featured) -->
+                <article class="tier-card featured" data-plan="PRO">
+                    <span class="tier-badge">MOST POPULAR</span>
+                    <div class="tier-card-top">
+                        <span class="eyebrow">PERFORMANCE</span>
+                        <h3>Pro Plan</h3>
+                        <p class="tier-desc">Complete 24/7 access, fitness assessment, and all group classes included.</p>
+                        <div class="tier-price">
+                            <strong>₹1,999</strong>
+                            <span>/ 3 months</span>
+                        </div>
+                    </div>
+                    <ul class="tier-features">
+                        <li><span class="check-icon">✓</span> All Starter plan features</li>
+                        <li><span class="check-icon">✓</span> 24/7 unlimited gym access</li>
+                        <li><span class="check-icon">✓</span> Dedicated fitness evaluation</li>
+                        <li><span class="check-icon">✓</span> All group fitness classes</li>
+                        <li><span class="check-icon">✓</span> Locker & shower amenities</li>
+                    </ul>
+                    <button class="tier-btn tier-btn-primary" data-plan="PRO" data-months="3" data-price="1999">
+                        Activate Pro Plan ↗
+                    </button>
+                </article>
+
+                <!-- Elite Plan -->
+                <article class="tier-card" data-plan="ELITE">
+                    <span class="tier-badge">VIP</span>
+                    <div class="tier-card-top">
+                        <span class="eyebrow">ULTIMATE</span>
+                        <h3>Elite Plan</h3>
+                        <p class="tier-desc">Personal trainer sessions, custom nutrition blueprints, and recovery lounge.</p>
+                        <div class="tier-price">
+                            <strong>₹3,499</strong>
+                            <span>/ 6 months</span>
+                        </div>
+                    </div>
+                    <ul class="tier-features">
+                        <li><span class="check-icon">✓</span> All Pro plan features</li>
+                        <li><span class="check-icon">✓</span> 1-on-1 personal trainer sessions</li>
+                        <li><span class="check-icon">✓</span> Custom nutrition & macro guide</li>
+                        <li><span class="check-icon">✓</span> Sauna & recovery lounge</li>
+                        <li><span class="check-icon">✓</span> Priority gym concierge</li>
+                    </ul>
+                    <button class="tier-btn tier-btn-secondary" data-plan="ELITE" data-months="6" data-price="3499">
+                        Activate Elite Plan ↗
+                    </button>
                 </article>
             </div>
         </section>

@@ -1,139 +1,123 @@
-const API_BASE_URL = "http://localhost:8080/api";
+const isDevHost = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
+const API_BASE_URL = isDevHost && window.location.port !== "8080" && window.location.port !== "80"
+    ? `http://${window.location.hostname}:8080/api`
+    : "/api";
 
-
-export async function registerMember(memberData) {
-
-    const response = await fetch(
-        `${API_BASE_URL}/members/register`,
-        {
-            method: "POST",
-
-            headers: {
-                "Content-Type": "application/json"
-            },
-
-            body: JSON.stringify(memberData)
+async function request(path, options = {}) {
+    const response = await fetch(`${API_BASE_URL}${path}`, {
+        ...options,
+        credentials: "include",
+        headers: {
+            ...(options.body ? { "Content-Type": "application/json" } : {}),
+            ...options.headers
         }
-    );
+    });
 
-    const data = await response.json();
-
-    if (!response.ok) {
-
-        throw new Error(
-            data.message ||
-            "Registration failed."
-        );
+    const body = await response.text();
+    let data = null;
+    if (body) {
+        try {
+            data = JSON.parse(body);
+        } catch {
+            data = { message: body };
+        }
     }
 
+    if (!response.ok) {
+        throw new Error(data?.message || `Request failed (${response.status}).`);
+    }
     return data;
 }
 
-
-export async function loginMember(loginData) {
-
-    const response = await fetch(
-        `${API_BASE_URL}/members/login`,
-        {
-            method: "POST",
-
-            headers: {
-                "Content-Type": "application/json"
-            },
-
-            body: JSON.stringify(loginData)
-        }
-    );
-
-    const data = await response.json();
-
-    if (!response.ok) {
-
-        throw new Error(
-            data.message ||
-            "Invalid email or password."
-        );
+document.getElementById("signOutLink")?.addEventListener("click", async event => {
+    event.preventDefault();
+    const link = event.currentTarget;
+    try {
+        await request("/members/logout", { method: "POST" });
+    } catch (error) {
+        console.error("Unable to invalidate the member session:", error);
+    } finally {
+        localStorage.removeItem("memberId");
+        window.location.assign(link.href);
     }
+});
 
-    return data;
+export function registerMember(memberData) {
+    return request("/members/register", {
+        method: "POST",
+        body: JSON.stringify(memberData)
+    });
 }
 
-
-export async function getMemberProfile(memberId) {
-
-    const response = await fetch(
-        `${API_BASE_URL}/members/profile/${memberId}`,
-        {
-            method: "GET"
-        }
-    );
-
-    const data = await response.json();
-
-    if (!response.ok) {
-
-        throw new Error(
-            data.message ||
-            "Unable to load member profile."
-        );
-    }
-
-    return data;
+export function loginMember(loginData) {
+    return request("/members/login", {
+        method: "POST",
+        body: JSON.stringify(loginData)
+    });
 }
 
+export function getMemberProfile(memberId) {
+    return request(`/members/profile/${encodeURIComponent(memberId)}`);
+}
 
-export async function updateMemberProfile(
-    memberId,
-    profileData
-) {
+export function updateMemberProfile(memberId, profileData) {
+    return request(`/members/profile/${encodeURIComponent(memberId)}`, {
+        method: "PUT",
+        body: JSON.stringify(profileData)
+    });
+}
 
-    const response = await fetch(
-        `${API_BASE_URL}/members/profile/${memberId}`,
-        {
-            method: "PUT",
+export function completeOnboarding(memberId, onboardingData) {
+    return request(`/members/onboarding/${encodeURIComponent(memberId)}`, {
+        method: "PUT",
+        body: JSON.stringify(onboardingData)
+    });
+}
 
-            headers: {
-                "Content-Type": "application/json"
-            },
+export function getAttendance(memberId) {
+    return request(`/members/${encodeURIComponent(memberId)}/attendance`);
+}
 
-            body: JSON.stringify(profileData)
-        }
-    );
+export function checkIn(memberId, date) {
+    return request(`/members/${encodeURIComponent(memberId)}/attendance`, {
+        method: "POST",
+        body: JSON.stringify({ date })
+    });
+}
 
-    const data = await response.json();
+export function getWorkouts(memberId) {
+    return request(`/members/${encodeURIComponent(memberId)}/workouts`);
+}
 
-    if (!response.ok) {
+export function saveWorkout(memberId, workout) {
+    return request(`/members/${encodeURIComponent(memberId)}/workouts`, {
+        method: "POST",
+        body: JSON.stringify(workout)
+    });
+}
 
-        throw new Error(
-            data.message ||
-            "Unable to update member profile."
-        );
-    }
+export function getWeightEntries(memberId) {
+    return request(`/members/${encodeURIComponent(memberId)}/weights`);
+}
 
-    return data;
-}export async function completeOnboarding(
-    memberId,
-    onboardingData
-) {
-    const response = await fetch(
-        `${API_BASE_URL}/members/onboarding/${memberId}`,
-        {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(onboardingData)
-        }
-    );
+export function saveWeightEntry(memberId, entry) {
+    return request(`/members/${encodeURIComponent(memberId)}/weights`, {
+        method: "POST",
+        body: JSON.stringify(entry)
+    });
+}
 
-    const data = await response.json();
+export function getMembership(memberId) {
+    return request(`/members/${encodeURIComponent(memberId)}/membership`);
+}
 
-    if (!response.ok) {
-        throw new Error(
-            data.message ||
-            "Unable to save onboarding information."
-        );
-    }
+export function updateMembership(memberId, membershipData) {
+    return request(`/members/${encodeURIComponent(memberId)}/membership`, {
+        method: "POST",
+        body: JSON.stringify(membershipData)
+    });
+}
 
-    return data;
+export function getDashboardSummary(memberId) {
+    return request(`/members/${encodeURIComponent(memberId)}/dashboard-summary`);
 }

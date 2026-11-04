@@ -163,7 +163,7 @@
     border-color: var(--accent);
 
     box-shadow:
-        0 0 0 3px rgba(183, 243, 74, 0.08);
+        0 0 0 3px rgba(196, 255, 101, 0.25);
 }
 
 .form-group select {

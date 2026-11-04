@@ -248,7 +248,8 @@ class MemberServiceTest {
                 result.getPhone()
         );
 
-        assertNull(
+        assertEquals(
+                "encoded-password",
                 result.getPassword()
         );
 
@@ -319,7 +320,8 @@ class MemberServiceTest {
                 result.getPhone()
         );
 
-        assertNull(
+        assertEquals(
+                "encoded-password",
                 result.getPassword()
         );
 
@@ -356,5 +358,47 @@ class MemberServiceTest {
 
         verify(repository, never())
                 .save(any(Member.class));
+    }
+
+    @Test
+    void shouldAssignAndRetrieveMembership() {
+        MemberRepository repository = mock(MemberRepository.class);
+        Member member = new Member();
+        member.setName("Test User");
+        when(repository.findById(1L)).thenReturn(Optional.of(member));
+        when(repository.save(member)).thenReturn(member);
+
+        MemberService service = new MemberService(repository);
+        var response = service.updateMembership(1L, "PRO", 3, 1999.0);
+
+        assertEquals("ACTIVE", response.get("status"));
+        assertEquals("PRO", response.get("plan"));
+        assertEquals("Pro Plan", response.get("planName"));
+        assertEquals(1999.0, response.get("price"));
+        assertEquals(3, response.get("durationMonths"));
+        verify(repository).save(member);
+    }
+
+    @Test
+    void shouldRejectInvalidMembershipPlan() {
+        MemberRepository repository = mock(MemberRepository.class);
+        Member member = new Member();
+        when(repository.findById(1L)).thenReturn(Optional.of(member));
+
+        MemberService service = new MemberService(repository);
+        assertThrows(IllegalArgumentException.class, () -> service.updateMembership(1L, "GOLD", 3, 500.0));
+    }
+
+    @Test
+    void shouldReturnInactiveWhenNoMembershipConfigured() {
+        MemberRepository repository = mock(MemberRepository.class);
+        Member member = new Member();
+        when(repository.findById(1L)).thenReturn(Optional.of(member));
+
+        MemberService service = new MemberService(repository);
+        var response = service.getMembership(1L);
+
+        assertEquals("INACTIVE", response.get("status"));
+        assertEquals("No Active Plan", response.get("planName"));
     }
 }

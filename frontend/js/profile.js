@@ -180,6 +180,13 @@ async function loadProfile() {
         // Update avatar
         updateAvatar(member.name);
 
+        const userNameEl = document.getElementById("userName");
+        if (userNameEl) userNameEl.textContent = member.name || "Member";
+        const userAvatarEl = document.getElementById("userAvatar");
+        if (userAvatarEl) userAvatarEl.textContent = (member.name || "M").trim().charAt(0).toUpperCase();
+        const profileHeaderNameEl = document.getElementById("profileHeaderName");
+        if (profileHeaderNameEl) profileHeaderNameEl.textContent = member.name || "Member Profile";
+
 
         console.log(
             "PROFILE UI UPDATED"

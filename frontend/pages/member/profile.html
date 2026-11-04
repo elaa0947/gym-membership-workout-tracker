@@ -3,182 +3,158 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>My Profile | Corely</title>
-
-    <link rel="stylesheet" href="../../css/style.css">
-    <link rel="stylesheet" href="../../css/profile.css">
-  <link rel="stylesheet" href="../../css/polaris.css" data-theme="polaris">
+    <title>My Profile | Corely Gym</title>
+    <link rel="stylesheet" href="../../css/style.css?v=green-3.0">
+    <link rel="stylesheet" href="../../css/dashboard.css?v=green-3.0">
+    <link rel="stylesheet" href="../../css/polaris.css?v=green-3.0" data-theme="polaris">
+    <link rel="stylesheet" href="../../css/profile.css?v=green-3.0">
 </head>
 
-<body>
+<body class="app-page">
+    <aside class="app-sidebar">
+        <a href="dashboard.html" class="brand">
+            <span class="brand-mark">C</span><span>Corely</span>
+        </a>
 
-<main class="profile-page">
+        <div class="sidebar-section">
+            <span class="sidebar-label">MAIN</span>
+            <a href="dashboard.html" class="sidebar-link"><span>⌂</span>Dashboard</a>
+            <a href="profile.html" class="sidebar-link active"><span>◯</span>My Profile</a>
+            <a href="membership.html" class="sidebar-link"><span>◇</span>Membership</a>
+        </div>
 
-    <div class="profile-container">
+        <div class="sidebar-section">
+            <span class="sidebar-label">FITNESS</span>
+            <a href="workout.html" class="sidebar-link"><span>↗</span>Workout</a>
+            <a href="attendance.html" class="sidebar-link"><span>✓</span>Attendance</a>
+            <a href="progress.html" class="sidebar-link"><span>⌁</span>Progress</a>
+        </div>
 
-        <!-- Profile Header -->
-        <header class="profile-heading">
+        <div class="sidebar-bottom">
+            <a href="../../index.html" class="sidebar-link" id="signOutLink">
+                <span>↪</span>Sign out
+            </a>
+        </div>
+    </aside>
 
-            <div class="profile-avatar" id="profileAvatar">
-                M
-            </div>
-
+    <main class="app-main profile-page-main">
+        <header class="app-topbar">
             <div>
-                <span class="eyebrow">MEMBER PROFILE</span>
-
+                <span class="eyebrow">MEMBER AREA</span>
                 <h1>My Profile</h1>
-
-                <p>
-                    Manage your personal information and account details.
-                </p>
             </div>
-
+            <a href="profile.html" class="user-chip">
+                <span class="user-avatar" id="userAvatar">M</span>
+                <span>
+                    <strong id="userName">Member</strong>
+                    <small>Member account</small>
+                </span>
+            </a>
         </header>
 
+        <!-- Profile Heading -->
+        <div class="profile-intro">
+            <div class="profile-avatar-large" id="profileAvatar">
+                M
+            </div>
+            <div>
+                <span class="eyebrow">ACCOUNT SETTINGS</span>
+                <h1 id="profileHeaderName">Member Profile</h1>
+                <p>Manage your personal information, mobile contact, and fitness baseline.</p>
+            </div>
+        </div>
 
-        <!-- Profile Layout -->
+        <!-- Profile Layout Grid -->
         <div class="profile-layout">
-
-            <!-- Edit Profile -->
+            <!-- Edit Profile Card -->
             <section class="profile-card">
-
                 <div class="profile-card-header">
-
                     <div>
                         <span class="eyebrow">PERSONAL DETAILS</span>
-
                         <h2>Account Information</h2>
                     </div>
-
-                    <span class="profile-status">
-                        ACTIVE
+                    <span class="profile-status" id="profileStatusBadge">
+                        ACTIVE MEMBER
                     </span>
-
                 </div>
 
-
-                <form id="profileForm">
-
+                <form id="profileForm" novalidate>
                     <div class="profile-form-grid">
-
                         <!-- Name -->
                         <div class="form-group">
-
-                            <label for="name">
-                                Full Name
-                            </label>
-
+                            <label for="name">Full Name</label>
                             <input
                                 type="text"
                                 id="name"
                                 name="name"
                                 minlength="2"
+                                placeholder="Enter your full name"
                                 required
                             >
-
-                            <span class="field-hint">
-                                Your name displayed across the gym application.
-                            </span>
-
+                            <span class="field-hint">Your name displayed across the gym application.</span>
                         </div>
-
-
-                        <!-- Email -->
-                        <div class="form-group protected-field">
-
-                            <label for="email">
-                                Email Address
-                            </label>
-
-                            <input
-                                type="email"
-                                id="email"
-                                name="email"
-                                disabled
-                            >
-
-                            <span class="field-hint">
-                                Email cannot be changed from the profile.
-                            </span>
-
-                        </div>
-
 
                         <!-- Phone -->
                         <div class="form-group">
-
-                            <label for="phone">
-                                Phone Number
-                            </label>
-
+                            <label for="phone">Phone Number</label>
                             <input
                                 type="tel"
                                 id="phone"
                                 name="phone"
                                 pattern="[6-9][0-9]{9}"
                                 maxlength="10"
+                                placeholder="10-digit mobile number"
                                 required
                             >
-
-                            <span class="field-hint">
-                                Enter a valid 10-digit mobile number.
-                            </span>
-
+                            <span class="field-hint">Used for SMS updates and gym check-in.</span>
                         </div>
 
-
-                        <!-- Member ID -->
+                        <!-- Email (Protected) -->
                         <div class="form-group protected-field">
+                            <label for="email">Email Address</label>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                disabled
+                            >
+                            <span class="field-hint">Registered login email cannot be changed directly.</span>
+                        </div>
 
-                            <label for="memberId">
-                                Member ID
-                            </label>
-
+                        <!-- Member ID (Protected) -->
+                        <div class="form-group protected-field">
+                            <label for="memberId">Member ID</label>
                             <input
                                 type="text"
                                 id="memberId"
                                 name="memberId"
                                 disabled
                             >
-
-                            <span class="field-hint">
-                                Your unique membership identifier.
-                            </span>
-
+                            <span class="field-hint">Your unique gym membership identifier.</span>
                         </div>
 
-
-                        <!-- Created Date -->
-                        <div class="form-group protected-field">
-
-                            <label for="createdAt">
-                                Member Since
-                            </label>
-
+                        <!-- Member Since -->
+                        <div class="form-group protected-field full-width">
+                            <label for="createdAt">Member Since</label>
                             <input
                                 type="text"
                                 id="createdAt"
                                 name="createdAt"
                                 disabled
                             >
-
                         </div>
-
                     </div>
 
-
-                    <!-- Message -->
+                    <!-- Alert message -->
                     <div
                         id="formMessage"
                         class="form-message"
+                        role="alert"
                         aria-live="polite">
                     </div>
 
-
                     <!-- Actions -->
                     <div class="profile-actions">
-
                         <button
                             type="button"
                             id="resetButton"
@@ -188,106 +164,56 @@
 
                         <button
                             type="submit"
-                            class="primary-button">
-                            Save Changes
+                            class="primary-button"
+                            id="saveProfileButton">
+                            Save Changes <span>→</span>
                         </button>
-
                     </div>
-
                 </form>
-
             </section>
 
-
-            <!-- Profile Information -->
+            <!-- Profile Info Aside -->
             <aside class="profile-info-card">
-
-                <span class="eyebrow">ACCOUNT</span>
-
+                <span class="eyebrow">DATA SECURITY</span>
                 <h3>Profile Overview</h3>
 
-
                 <div class="info-list">
-
                     <div class="info-item">
-
-                        <div class="info-icon">
-                            ✓
-                        </div>
-
+                        <div class="info-icon">✓</div>
                         <div>
-                            <strong>Personal Details</strong>
-
-                            <span>
-                                Keep your name and phone number up to date.
-                            </span>
+                            <strong>Live Synchronization</strong>
+                            <span>Updates to your profile are securely written directly to MySQL.</span>
                         </div>
-
                     </div>
 
-
                     <div class="info-item">
-
-                        <div class="info-icon">
-                            @
-                        </div>
-
+                        <div class="info-icon">@</div>
                         <div>
                             <strong>Email Protected</strong>
-
-                            <span>
-                                Your registered email is kept unchanged.
-                            </span>
+                            <span>Your registered identity remains secure and tied to your account.</span>
                         </div>
-
                     </div>
-
 
                     <div class="info-item">
-
-                        <div class="info-icon">
-                            #
-                        </div>
-
+                        <div class="info-icon">#</div>
                         <div>
-                            <strong>Member ID</strong>
-
-                            <span>
-                                Your member ID is assigned by the system.
-                            </span>
+                            <strong>Unique Member ID</strong>
+                            <span>Used by gym staff for facility check-in and records verification.</span>
                         </div>
-
                     </div>
-
 
                     <div class="info-item">
-
-                        <div class="info-icon">
-                            !
-                        </div>
-
+                        <div class="info-icon">◇</div>
                         <div>
-                            <strong>Password Security</strong>
-
-                            <span>
-                                Password information is never displayed here.
-                            </span>
+                            <strong>Membership Status</strong>
+                            <span>Manage your plan term anytime from the Membership tab.</span>
                         </div>
-
                     </div>
-
                 </div>
-
             </aside>
-
         </div>
+    </main>
 
-    </div>
-
-</main>
-
-
-<script type="module" src="../../js/profile.js"></script>
-
+    <script type="module" src="../../js/profile.js"></script>
 </body>
 </html>

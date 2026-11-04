@@ -61,32 +61,5 @@ loginForm.addEventListener("submit", async (event) => {
             "Invalid email or password.",
             "error"
         );
-    }const profile =
-    await getMemberProfile(member.id);
-
-console.log("LOGIN MEMBER:", member);
-console.log("PROFILE:", profile);
-console.log(
-    "ONBOARDING STATUS:",
-    profile.onboardingCompleted
-);
-
-setTimeout(() => {
-
-    if (profile.onboardingCompleted === true) {
-
-        console.log("REDIRECTING TO DASHBOARD");
-
-        window.location.href =
-            "./member/dashboard.html";
-
-    } else {
-
-        console.log("REDIRECTING TO ONBOARDING");
-
-        window.location.href =
-            "./member/onboarding.html";
     }
-
-}, 500);
 });

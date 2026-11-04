@@ -11,11 +11,13 @@ import jakarta.validation.constraints.Size;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.web.bind.annotation.*;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/members")
-@CrossOrigin(origins = "*")
 public class MemberController {
 
     private final MemberService memberService;
@@ -38,9 +40,6 @@ public class MemberController {
             Member registeredMember =
                     memberService.registerMember(member);
 
-            // Never return password to frontend
-            registeredMember.setPassword(null);
-
             return ResponseEntity
                     .status(HttpStatus.CREATED)
                     .body(registeredMember);
@@ -49,9 +48,7 @@ public class MemberController {
 
             return ResponseEntity
                     .badRequest()
-                    .body("{\"message\":\""
-                            + e.getMessage()
-                            + "\"}");
+                    .body(Map.of("message", e.getMessage()));
         }
     }
 
@@ -62,7 +59,8 @@ public class MemberController {
 
     @PostMapping("/login")
     public ResponseEntity<?> loginMember(
-            @Valid @RequestBody LoginRequest loginRequest) {
+            @Valid @RequestBody LoginRequest loginRequest,
+            HttpServletRequest request) {
 
         try {
 
@@ -72,19 +70,29 @@ public class MemberController {
                             loginRequest.getPassword()
                     );
 
-            // Never return password to frontend
-            member.setPassword(null);
-
+            HttpSession existingSession = request.getSession(false);
+            if (existingSession != null) {
+                existingSession.invalidate();
+            }
+            HttpSession session = request.getSession(true);
+            session.setAttribute("memberId", member.getId());
             return ResponseEntity.ok(member);
 
         } catch (IllegalArgumentException e) {
 
             return ResponseEntity
                     .status(HttpStatus.UNAUTHORIZED)
-                    .body("{\"message\":\""
-                            + e.getMessage()
-                            + "\"}");
+                    .body(Map.of("message", e.getMessage()));
         }
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<Void> logout(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.invalidate();
+        }
+        return ResponseEntity.noContent().build();
     }
 
 
@@ -107,9 +115,7 @@ public class MemberController {
 
             return ResponseEntity
                     .status(HttpStatus.NOT_FOUND)
-                    .body("{\"message\":\""
-                            + e.getMessage()
-                            + "\"}");
+                    .body(Map.of("message", e.getMessage()));
         }
     }
 
@@ -138,9 +144,7 @@ public class MemberController {
 
             return ResponseEntity
                     .status(HttpStatus.NOT_FOUND)
-                    .body("{\"message\":\""
-                            + e.getMessage()
-                            + "\"}");
+                    .body(Map.of("message", e.getMessage()));
         }
     }
 
@@ -170,9 +174,77 @@ public class MemberController {
 
             return ResponseEntity
                     .badRequest()
-                    .body("{\"message\":\""
-                            + e.getMessage()
-                            + "\"}");
+                    .body(Map.of("message", e.getMessage()));
+        }
+    }
+
+
+    // =========================
+    // MEMBER MEMBERSHIP
+    // =========================
+
+    @GetMapping("/{id}/membership")
+    public ResponseEntity<?> getMembership(@PathVariable Long id) {
+        try {
+            return ResponseEntity.ok(memberService.getMembership(id));
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(Map.of("message", e.getMessage()));
+        }
+    }
+
+    @PostMapping("/{id}/membership")
+    public ResponseEntity<?> updateMembership(
+            @PathVariable Long id,
+            @RequestBody MembershipRequest request) {
+        try {
+            return ResponseEntity.ok(memberService.updateMembership(
+                    id,
+                    request != null ? request.getPlan() : null,
+                    request != null ? request.getDurationMonths() : null,
+                    request != null ? request.getPrice() : null
+            ));
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest()
+                    .body(Map.of("message", e.getMessage()));
+        }
+    }
+
+
+    // =========================
+    // MEMBERSHIP REQUEST
+    // =========================
+
+    public static class MembershipRequest {
+        private String plan;
+        private Integer durationMonths;
+        private Double price;
+
+        public MembershipRequest() {
+        }
+
+        public String getPlan() {
+            return plan;
+        }
+
+        public void setPlan(String plan) {
+            this.plan = plan;
+        }
+
+        public Integer getDurationMonths() {
+            return durationMonths;
+        }
+
+        public void setDurationMonths(Integer durationMonths) {
+            this.durationMonths = durationMonths;
+        }
+
+        public Double getPrice() {
+            return price;
+        }
+
+        public void setPrice(Double price) {
+            this.price = price;
         }
     }
 
