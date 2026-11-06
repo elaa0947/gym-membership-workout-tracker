@@ -121,3 +121,76 @@ export function updateMembership(memberId, membershipData) {
 export function getDashboardSummary(memberId) {
     return request(`/members/${encodeURIComponent(memberId)}/dashboard-summary`);
 }
+
+// ==========================================
+// ADMIN API PERSPECTIVE
+// ==========================================
+
+export function loginAdmin(credentials) {
+    return request("/admin/login", {
+        method: "POST",
+        body: JSON.stringify(credentials)
+    });
+}
+
+export function logoutAdmin() {
+    return request("/admin/logout", {
+        method: "POST"
+    });
+}
+
+export function getAdminOverview() {
+    return request("/admin/overview");
+}
+
+export function getAdminMembers() {
+    return request("/admin/members");
+}
+
+export function createAdminMember(memberData) {
+    return request("/admin/members", {
+        method: "POST",
+        body: JSON.stringify(memberData)
+    });
+}
+
+export function updateAdminMember(id, updateData) {
+    return request(`/admin/members/${encodeURIComponent(id)}`, {
+        method: "PUT",
+        body: JSON.stringify(updateData)
+    });
+}
+
+export function deleteAdminMember(id) {
+    return request(`/admin/members/${encodeURIComponent(id)}`, {
+        method: "DELETE"
+    });
+}
+
+export function updateAdminMemberMembership(id, membershipData) {
+    return request(`/admin/members/${encodeURIComponent(id)}/membership`, {
+        method: "PUT",
+        body: JSON.stringify(membershipData)
+    });
+}
+
+export function getAdminAttendance() {
+    return request("/admin/attendance");
+}
+
+export function markAdminAttendance(attendanceData) {
+    return request("/admin/attendance", {
+        method: "POST",
+        body: JSON.stringify(attendanceData)
+    });
+}
+
+export function deleteAdminAttendance(id) {
+    return request(`/admin/attendance/${encodeURIComponent(id)}`, {
+        method: "DELETE"
+    });
+}
+
+export function getAdminWorkouts() {
+    return request("/admin/workouts");
+}

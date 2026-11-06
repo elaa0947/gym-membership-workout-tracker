@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrator Portal | Corely Gym</title>
+    <link rel="stylesheet" href="../../css/style.css?v=green-3.0">
+    <link rel="stylesheet" href="../../css/polaris.css?v=green-3.0" data-theme="polaris">
+    <style>
+        .admin-badge-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.35rem 0.85rem;
+            border-radius: 9999px;
+            background: rgba(196, 255, 101, 0.12);
+            border: 1px solid rgba(196, 255, 101, 0.3);
+            color: #c4ff65;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+        .admin-key-hint {
+            margin-top: 1rem;
+            padding: 0.85rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px dashed rgba(229, 239, 243, 0.15);
+            border-radius: 8px;
+            font-size: 0.8rem;
+            color: var(--muted);
+            line-height: 1.4;
+        }
+        .admin-key-hint code {
+            color: var(--accent);
+            font-family: monospace;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 0.15rem 0.35rem;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body class="auth-page">
+
+    <header class="navbar">
+        <a href="../../index.html" class="brand">
+            <span class="brand-mark">C</span>
+            <span>Corely <small style="font-size: 0.75rem; color: #c4ff65; letter-spacing: 0.05em; font-weight: 600; text-transform: uppercase;">Admin</small></span>
+        </a>
+        <a href="../login.html" class="back-link">
+            ← Switch to Member Login
+        </a>
+    </header>
+
+    <main class="auth-container">
+
+        <section class="auth-intro">
+            <span class="admin-badge-pill">
+                🔒 Gym Management Console
+            </span>
+            <h1>
+                Administrator<br>
+                <span>Console.</span>
+            </h1>
+            <p>
+                Authorized operations portal for membership management,
+                attendance logging, workout oversight, and business analytics.
+            </p>
+
+            <div class="trust-row">
+                <span class="trust-item">
+                    <span class="status-dot"></span>
+                    Elevated privileges
+                </span>
+                <span class="trust-item">
+                    ✓ Full system access
+                </span>
+            </div>
+
+            <div class="admin-key-hint">
+                <strong>Standard Administrator Access:</strong><br>
+                Email: <code>admin@corelygym.com</code><br>
+                Password: <code>AdminPass123!</code>
+            </div>
+        </section>
+
+        <section class="form-card">
+            <div class="form-header">
+                <div>
+                    <span class="eyebrow" style="color: #c4ff65;">
+                        MANAGEMENT AUTHENTICATION
+                    </span>
+                    <h2>Staff Sign In</h2>
+                    <p>Enter administrator credentials to proceed.</p>
+                </div>
+                <span class="step-indicator" style="background: rgba(196, 255, 101, 0.15); color: #c4ff65; border-color: rgba(196, 255, 101, 0.3);">
+                    SECURE
+                </span>
+            </div>
+
+            <form id="adminLoginForm" novalidate>
+                <div class="form-group">
+                    <label for="adminEmail">Administrator Email</label>
+                    <input
+                        type="email"
+                        id="adminEmail"
+                        name="email"
+                        placeholder="admin@corelygym.com"
+                        value="admin@corelygym.com"
+                        autocomplete="email"
+                        required
+                    >
+                    <small class="field-error" id="emailError"></small>
+                </div>
+
+                <div class="form-group">
+                    <label for="adminPassword">Master Password</label>
+                    <input
+                        type="password"
+                        id="adminPassword"
+                        name="password"
+                        placeholder="Enter admin password"
+                        autocomplete="current-password"
+                        required
+                    >
+                    <small class="field-error" id="passwordError"></small>
+                </div>
+
+                <div id="formMessage" class="form-message" role="alert"></div>
+
+                <button type="submit" class="primary-button submit-button" id="submitBtn">
+                    Authenticate Console
+                    <span>→</span>
+                </button>
+
+                <p class="form-footer" style="margin-top: 1.25rem;">
+                    Regular gym member?
+                    <a href="../login.html" style="color: var(--accent);">
+                        Go to Member Login ↗
+                    </a>
+                </p>
+            </form>
+        </section>
+
+    </main>
+
+    <script type="module" src="../../js/admin-login.js"></script>
+
+</body>
+
+</html>

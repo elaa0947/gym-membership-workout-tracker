@@ -75,6 +75,17 @@ public class Member {
     @Column(name = "membership_price")
     private Double membershipPrice;
 
+    @Column(nullable = false)
+    private String role = "MEMBER";
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
     public String getMembershipPlan() {
         return membershipPlan;
     }

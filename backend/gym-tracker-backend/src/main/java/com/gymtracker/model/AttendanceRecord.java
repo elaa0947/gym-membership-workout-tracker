@@ -39,6 +39,10 @@ public class AttendanceRecord {
         return id;
     }
 
+    public Member getMember() {
+        return member;
+    }
+
     public LocalDate getDate() {
         return date;
     }

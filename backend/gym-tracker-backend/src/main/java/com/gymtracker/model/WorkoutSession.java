@@ -49,6 +49,10 @@ public class WorkoutSession {
         return id;
     }
 
+    public Member getMember() {
+        return member;
+    }
+
     public LocalDate getDate() {
         return date;
     }

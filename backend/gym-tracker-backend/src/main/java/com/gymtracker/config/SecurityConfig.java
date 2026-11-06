@@ -37,7 +37,7 @@ public class SecurityConfig {
         configuration.setAllowedOrigins(Arrays.asList(environment.getProperty(
                 "app.cors.allowed-origins",
                 "http://localhost:5500,http://127.0.0.1:5500").split(",")));
-        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "OPTIONS"));
+        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("Content-Type", "Authorization"));
         configuration.setAllowCredentials(true);
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();

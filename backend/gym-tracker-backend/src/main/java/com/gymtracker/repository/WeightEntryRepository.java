@@ -12,4 +12,6 @@ public interface WeightEntryRepository extends JpaRepository<WeightEntry, Long> 
     List<WeightEntry> findAllByMemberIdOrderByDateAsc(Long memberId);
 
     Optional<WeightEntry> findByMemberIdAndDate(Long memberId, LocalDate date);
+
+    void deleteAllByMemberId(Long memberId);
 }

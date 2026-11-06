@@ -24,6 +24,27 @@ Member registration/login and profile/onboarding use the backend. A successful l
 
 Membership tier selection, term rules, pricing (Starter, Pro, and Elite), and activation are fully configured and persisted in MySQL. The member dashboard automatically aggregates real database metrics for attendance streaks, completed workouts, weight trends, and membership expiry.
 
+## Administrator Management Console
+
+A dedicated Administrator perspective is available at `/frontend/pages/admin/login.html` (or linked directly from the landing page and login page).
+
+- **Default Administrator Credentials:**
+  - **Email:** `admin@corelygym.com`
+  - **Password:** `AdminPass123!`
+- **Capabilities:**
+  - **Live Overview:** Real-time KPI counters for total members, active paid plans, revenue, today's check-ins, and completed workouts.
+  - **Member Management:** Search and filter members, add new members, edit details, assign/upgrade/cancel membership tiers, and delete members.
+  - **Attendance Management:** Live check-in log, manual check-in for any member, undo/delete check-in records.
+  - **Workout Oversight:** Real-time stream of member workouts with exercise lists and timestamps.
+
+## Deployment Options
+
+See [`DEPLOYMENT.md`](./DEPLOYMENT.md) for full deployment instructions:
+- **Vercel:** Ready with [`vercel.json`](./vercel.json) (`npx vercel`)
+- **Netlify:** Ready with [`netlify.toml`](./netlify.toml) (`npx netlify deploy`)
+- **AWS:** S3 + CloudFront (Frontend) and AWS App Runner / Elastic Beanstalk (Spring Boot Backend) + RDS MySQL
+- **Docker Compose:** Full stack deployment via `docker compose up --build -d`
+
 ## Verification
 
 ```sh

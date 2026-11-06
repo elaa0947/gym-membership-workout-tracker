@@ -8,4 +8,8 @@ import java.util.List;
 public interface WorkoutSessionRepository extends JpaRepository<WorkoutSession, Long> {
 
     List<WorkoutSession> findAllByMemberIdOrderByDateDescSavedAtDesc(Long memberId);
+
+    List<WorkoutSession> findAllByOrderByDateDescSavedAtDesc();
+
+    void deleteAllByMemberId(Long memberId);
 }
