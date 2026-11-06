@@ -1,0 +1,8 @@
+backend/
+node_modules/
+frontend/node_modules/
+.git/
+.vscode/
+.theme-backup/
+test-results/
+frontend/test-results/
