@@ -1,0 +1,26 @@
+ID,Category,Input,Expected,Actual,Status,Notes
+BB-01,Phone number,9876543210,ACCEPTED,ACCEPTED,PASS,Valid 10-digit Indian mobile number format starting with 9
+BB-02,Phone number,5876543210,REJECTED,REJECTED,PASS,Disallowed starting digit 5; only 6-9 accepted
+BB-03,Phone number,987654321,REJECTED,REJECTED,PASS,Length 9 digits is less than required 10 digits
+BB-04,Phone number,98765432100,REJECTED,REJECTED,PASS,Length 11 digits exceeds permitted 10 digits
+BB-05,Phone number,,REJECTED,REJECTED,PASS,Empty phone number rejected by validation
+PW-01,Password,Valid account password,LOGIN SUCCESS,LOGIN SUCCESS,PASS,Valid credentials authenticated; session established
+PW-02,Password,Empty password,REJECTED,REJECTED,PASS,Empty password rejected by front-end and back-end constraints
+PW-03,Password,abc12 (less than 8 characters),REJECTED,REJECTED,PASS,Password under 8 characters rejected by validator
+PW-04,Password,Incorrect password,LOGIN REJECTED,LOGIN REJECTED,PASS,BCrypt hash mismatch returns HTTP 401 Unauthorized
+BW-01,Body weight,70,ACCEPTED,ACCEPTED,PASS,70 kg within valid range (20-350 kg) accepted and stored
+BW-02,Body weight,Empty,REJECTED,REJECTED,PASS,Empty input blocked by form validation
+BW-03,Body weight,0,REJECTED,REJECTED,PASS,Zero body weight rejected (weight must be > 0)
+BW-04,Body weight,-5,REJECTED,REJECTED,PASS,Negative weight value rejected by domain validation
+DT-01,Decision table,"Plan = STARTER, Duration = 3 months, Price = 2400",ACCEPTED,ACCEPTED,PASS,Starter tier activated for 3 months with valid pricing
+DT-02,Decision table,"Plan = PRO, Duration = 6 months, Price = 4200",ACCEPTED,ACCEPTED,PASS,Pro tier activated for 6 months with standard pricing
+DT-03,Decision table,"Plan = ELITE, Duration = 12 months, Price = 7200",ACCEPTED,ACCEPTED,PASS,Elite annual tier activated for 12 months
+DT-04,Decision table,"Plan = INVALID_TIER, Duration = 6 months, Price = 4200",REJECTED,REJECTED,PASS,Unknown plan name rejected with invalid tier message
+DT-05,Decision table,"Plan = [EMPTY], Duration = 0, Price = 0",REJECTED,REJECTED,PASS,Blank plan parameter rejected by requirement check
+WB-01,Basis path,Path 1: getMembership with non-existent memberId (id = 9999),MEMBER NOT FOUND,MEMBER NOT FOUND,PASS,Throws IllegalArgumentException: Member not found
+WB-02,Basis path,Path 2: Member with status = NONE / null plan configuration,STATUS INACTIVE,STATUS INACTIVE,PASS,Returns INACTIVE status with 0 days remaining
+WB-03,Basis path,Path 3: Member with expired membership (endDate < today),STATUS EXPIRED,STATUS EXPIRED,PASS,Calculates 0 days remaining and marks status EXPIRED
+WB-04,Basis path,Path 4: Active membership with STARTER tier,STARTER PLAN ACTIVE,STARTER PLAN ACTIVE,PASS,Formats plan name as Starter Plan with remaining days
+WB-05,Basis path,Path 5: Active membership with PRO tier,PRO PLAN ACTIVE,PRO PLAN ACTIVE,PASS,Formats plan name as Pro Plan with remaining days
+WB-06,Basis path,Path 6: Active membership with ELITE tier,ELITE PLAN ACTIVE,ELITE PLAN ACTIVE,PASS,Formats plan name as Elite Plan with remaining days
+WB-07,Basis path,Path 7: Active membership with custom tier fallback,CUSTOM PLAN ACTIVE,CUSTOM PLAN ACTIVE,PASS,Fallback default branch formats as {plan} Plan
