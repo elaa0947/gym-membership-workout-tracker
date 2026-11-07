@@ -1,10 +1,24 @@
 # Deployment Guide: Corely Gym Management & Tracker
 
-This project is structured for easy multi-cloud deployment across **Vercel**, **Netlify**, **AWS**, or **Docker Compose**.
+This project is structured for easy multi-cloud deployment across **Vercel**, **Netlify**, **Render**, **Railway**, **AWS**, or **Docker Compose**.
 
 ---
 
-## 1. Deploy Frontend to Vercel
+## 1. Cloud Bridge Architecture (Hybrid Local/Cloud)
+
+When the frontend is deployed to cloud providers like Vercel or Netlify while developing locally, use the automated Cloud Bridge script:
+
+```bash
+# Automatically checks MySQL, backend health, and connects the HTTPS tunnel
+./scripts/start-cloud-bridge.sh
+```
+
+- Tunnel Endpoint: `https://long-seas-wait.loca.lt` (or generated tunnel URL)
+- Frontend calls `/api/*` which transparently proxies to your Spring Boot instance on port 8080.
+
+---
+
+## 2. Deploy Frontend to Vercel
 
 The project includes a ready-to-deploy [`vercel.json`](./vercel.json).
 
@@ -26,30 +40,43 @@ npx vercel --prod
 
 ---
 
-## 2. Deploy Frontend to Netlify
+## 3. 1-Click Deploy to Render (Backend + Database)
 
-The project includes a pre-configured [`netlify.toml`](./netlify.toml).
+The repository includes a pre-configured [`render.yaml`](./render.yaml) blueprint:
 
-### Quick CLI Deploy:
-```sh
-# Deploy preview
-npx netlify deploy --dir=frontend
-
-# Deploy to production
-npx netlify deploy --dir=frontend --prod
-```
-
-### Git-Linked Deploy:
-1. Connect repository on [netlify.com](https://netlify.com).
-2. Set **Publish directory** to `frontend`.
-3. Netlify automatically picks up `netlify.toml` for redirects and routing.
+1. Create a free account on [render.com](https://render.com).
+2. Click **Blueprints** → **New Blueprint Instance**.
+3. Connect repository `https://github.com/elaa0947/gym-membership-workout-tracker.git`.
+4. Render automatically spins up:
+   - Managed MySQL database (`gym_tracker`)
+   - Spring Boot web service in Docker container
+   - Injects `SPRING_DATASOURCE_URL`, `SPRING_DATASOURCE_USERNAME`, and `SPRING_DATASOURCE_PASSWORD`
+5. Copy the generated Render URL (e.g., `https://gym-tracker-backend.onrender.com`) and update `vercel.json`:
+   ```json
+   {
+     "src": "/api/(.*)",
+     "dest": "https://gym-tracker-backend.onrender.com/api/$1"
+   }
+   ```
 
 ---
 
-## 3. Deploy Full Stack to AWS
+## 4. Deploy to Railway
+
+1. Install Railway CLI or go to [railway.app](https://railway.app).
+2. Create **New Project** → **Provision MySQL**.
+3. Add **GitHub Repo** → select `gym-membership-workout-tracker`.
+4. Railway uses [`railway.json`](./railway.json) and builds from `backend/gym-tracker-backend/Dockerfile`.
+5. Connect database variables:
+   - `SPRING_DATASOURCE_URL`: `${{MySQL.MYSQL_URL}}`
+   - `PORT`: `8080`
+
+---
+
+## 5. Deploy Full Stack to AWS
 
 ### Option A: AWS Elastic Beanstalk / App Runner (Backend + Database)
-1. **Database:** Create an **Amazon RDS MySQL** instance (`db.t3.micro` or `db.t4g.micro` for free tier) and name the database `gym_tracker`.
+1. **Database:** Create an **Amazon RDS MySQL** instance (`db.t3.micro` or `db.t4g.micro` for free tier) and import initial data from [`gym_tracker_schema_and_data.sql`](./gym_tracker_schema_and_data.sql).
 2. **Backend:** 
    - Deploy `backend/gym-tracker-backend/target/gym-tracker-backend-0.0.1-SNAPSHOT.jar` to **AWS App Runner** or **AWS Elastic Beanstalk (Java SE)**.
    - Configure Environment Variables:
@@ -65,7 +92,7 @@ npx netlify deploy --dir=frontend --prod
 
 ---
 
-## 4. Deploy with Docker Compose (Any VPS / DigitalOcean / EC2)
+## 6. Deploy with Docker Compose (Any VPS / DigitalOcean / EC2)
 
 ```sh
 # 1. Prepare environment variables
