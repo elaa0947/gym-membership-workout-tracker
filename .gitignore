@@ -34,3 +34,9 @@ frontend/*.png
 *.pre-orange-backup
 .theme-backup/
 .vscode/
+.vercel
+.DS_Store
+**/.DS_Store
+test_evidence_*/
+test_evidence_* 2/
+**/test-evidence/

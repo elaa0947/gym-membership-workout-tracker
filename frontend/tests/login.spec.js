@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-test("member can login with valid credentials", async ({ page }) => {
+test("member can login with valid credentials", async ({ page }, testInfo) => {
 
     await page.route("http://127.0.0.1:8080/api/**", async route => {
         const url = new URL(route.request().url());
@@ -50,4 +50,9 @@ test("member can login with valid credentials", async ({ page }) => {
     ).toHaveClass(/success/);
 
     await expect(page).toHaveURL(/member\/dashboard\.html$/);
+
+    await page.screenshot({
+        path: testInfo.outputPath("login-test-result.png"),
+        fullPage: true
+    });
 });

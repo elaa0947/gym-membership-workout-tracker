@@ -1,17 +1,26 @@
 const isDevHost = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
-const API_BASE_URL = isDevHost && window.location.port !== "8080" && window.location.port !== "80"
-    ? `http://${window.location.hostname}:8080/api`
-    : "/api";
+const savedCustomBackend = localStorage.getItem("API_BACKEND_URL");
+const API_BASE_URL = savedCustomBackend
+    ? savedCustomBackend.replace(/\/+$/, "")
+    : (isDevHost && window.location.port !== "8080" && window.location.port !== "80"
+        ? `http://${window.location.hostname}:8080/api`
+        : "/api");
 
 async function request(path, options = {}) {
-    const response = await fetch(`${API_BASE_URL}${path}`, {
-        ...options,
-        credentials: "include",
-        headers: {
-            ...(options.body ? { "Content-Type": "application/json" } : {}),
-            ...options.headers
-        }
-    });
+    let response;
+    try {
+        response = await fetch(`${API_BASE_URL}${path}`, {
+            ...options,
+            credentials: "include",
+            headers: {
+                "Bypass-Tunnel-Reminder": "true",
+                ...(options.body ? { "Content-Type": "application/json" } : {}),
+                ...options.headers
+            }
+        });
+    } catch (networkError) {
+        throw new Error("Unable to connect to backend service. Please check network or use http://localhost:5500.");
+    }
 
     const body = await response.text();
     let data = null;
@@ -19,7 +28,13 @@ async function request(path, options = {}) {
         try {
             data = JSON.parse(body);
         } catch {
-            data = { message: body };
+            if (body.includes("DNS_HOSTNAME_RESOLVED_PRIVATE") || body.includes("The page could not be found")) {
+                data = {
+                    message: "Backend unreachable from cloud preview: Vercel cannot reach local servers directly. Use http://localhost:5500 for local development or set a public backend URL."
+                };
+            } else {
+                data = { message: body };
+            }
         }
     }
 

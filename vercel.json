@@ -5,7 +5,7 @@
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "http://localhost:8080/api/$1"
+      "dest": "https://long-seas-wait.loca.lt/api/$1"
     },
     {
       "src": "/",
